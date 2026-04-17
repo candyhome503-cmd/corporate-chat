@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -11,101 +11,52 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: 10px;
       min-height: 100vh;
-      font-size: 18px;
     }
-    .top-image-container { width: 100%; text-align: center; margin-bottom: 10px; background: white; border-radius: 20px; overflow: hidden; cursor: pointer; }
-    .top-image-container img { width: 100%; max-height: 200px; object-fit: cover; }
     .app { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    .report-bar { background: #ffb347; padding: 20px 24px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-    .report-bar span { font-weight: bold; font-size: 32px; }
-    .report-select { padding: 32px 36px; border: 1px solid #ff8c00; border-radius: 14px; font-size: 32px; background: white; }
-    .report-btn { background: #667eea; color: white; border: none; padding: 32px 36px; border-radius: 50px; cursor: pointer; font-size: 32px; }
     .common-chat-section { background: #f5f0ff; border-bottom: 2px solid #e0e0e0; max-height: 70vh; display: flex; flex-direction: column; position: relative; }
     .common-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .common-header h2 { font-size: 32px; }
-    .messages-area { flex: 1; overflow-y: auto; padding: 20px; background: #f5f0ff; }
-    .message { max-width: 80%; margin-bottom: 14px; display: inline-block; clear: both; word-wrap: break-word; border-radius: 24px; padding: 14px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); position: relative; }
+    .common-header h2 { font-size: 24px; }
+    .messages-area { flex: 1; overflow-y: auto; padding: 20px; background: #f5f0ff; min-height: 300px; max-height: 400px; }
+    .message { max-width: 80%; margin-bottom: 14px; display: inline-block; clear: both; word-wrap: break-word; border-radius: 24px; padding: 12px 16px; }
     .message-own { background: #667eea; color: white; float: right; border-bottom-right-radius: 4px; }
     .message-other { background: white; border-left: 4px solid #667eea; float: left; border-bottom-left-radius: 4px; }
-    .message-user { font-weight: 600; font-size: 28px; margin-bottom: 4px; }
-    .message-time { font-size: 12px; opacity: 0.7; float: right; margin-left: 12px; }
-    .message-text { font-size: 28px; line-height: 1.4; margin-top: 4px; }
-    .message-image { margin-top: 8px; max-width: 100%; border-radius: 12px; cursor: pointer; }
+    .message-user { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .message-time { font-size: 11px; opacity: 0.7; float: right; margin-left: 12px; }
+    .message-text { font-size: 14px; line-height: 1.4; margin-top: 4px; }
+    .message-image { margin-top: 8px; max-width: 100%; border-radius: 12px; cursor: pointer; max-height: 200px; }
     .clearfix::after { content: ""; clear: both; display: table; }
     .private-chat-section { max-height: 70vh; display: flex; flex-direction: column; background: #fff0f5; overflow: hidden; position: relative; }
     .private-header { background: linear-gradient(135deg, #d946ef 0%, #a855f7 100%); color: white; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .private-header h2 { font-size: 32px; }
+    .private-header h2 { font-size: 24px; }
     .private-chat-container { display: flex; flex: 1; overflow: hidden; }
-    .contacts-panel { width: 220px; background: #f8f0ff; border-right: 1px solid #ddd; padding: 10px; overflow-y: auto; flex-shrink: 0; }
-    .contact-btn { display: block; width: 100%; padding: 12px; margin-bottom: 8px; border: none; background: #fff; border-radius: 12px; text-align: left; font-size: 20px; cursor: pointer; }
+    .contacts-panel { width: 200px; background: #f8f0ff; border-right: 1px solid #ddd; padding: 10px; overflow-y: auto; flex-shrink: 0; }
+    .contact-btn { display: block; width: 100%; padding: 10px; margin-bottom: 8px; border: none; background: #fff; border-radius: 12px; text-align: left; font-size: 14px; cursor: pointer; }
     .contact-active { background: #d946ef; color: white; }
-    .contact-unread {
-    background: #f76d0a;
-    color: white;
-    font-weight: bold;
-    border-left: 4px solid #ff9800;
-    text-shadow: 0 0 1px rgba(0,0,0,0.5);
-    }
+    .contact-unread { background: #f76d0a; color: white; font-weight: bold; border-left: 4px solid #ff9800; }
     .chat-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-    .private-messages-area { flex: 1; overflow-y: auto; padding: 20px; background: #fff0f5; }
-    .private-message { max-width: 80%; margin-bottom: 14px; display: inline-block; clear: both; word-wrap: break-word; border-radius: 24px; padding: 14px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); position: relative; }
+    .private-messages-area { flex: 1; overflow-y: auto; padding: 20px; background: #fff0f5; min-height: 300px; max-height: 400px; }
+    .private-message { max-width: 80%; margin-bottom: 14px; display: inline-block; clear: both; word-wrap: break-word; border-radius: 24px; padding: 12px 16px; }
     .private-message-own { background: #d946ef; color: white; float: right; border-bottom-right-radius: 4px; }
     .private-message-other { background: white; border-left: 4px solid #d946ef; float: left; border-bottom-left-radius: 4px; }
-    .private-message-user { font-weight: 600; font-size: 28px; margin-bottom: 4px; }
-    .private-message-time { font-size: 22px; opacity: 0.7; float: right; margin-left: 12px; }
-    .private-message-text { font-size: 28px; line-height: 1.4; margin-top: 4px; }
-    .private-message-image { margin-top: 8px; max-width: 100%; border-radius: 12px; cursor: pointer; }
-    .input-area { padding: 20px; background: white; border-top: 1px solid #ddd; flex-shrink: 0; }
-    .msg-input { width: 100%; padding: 18px; border: 1px solid #ddd; border-radius: 50px; margin-bottom: 14px; font-family: inherit; font-size: 32px; }
-    .input-buttons { display: flex; gap: 20px; margin-bottom: 14px; align-items: center; }
-    .file-btn { background: #f0f0f0; border: none; padding: 14px 28px; border-radius: 50px; cursor: pointer; font-size: 20px; }
-    .send-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px 28px; border-radius: 50px; cursor: pointer; font-size: 22px; font-weight: 600; flex: 1; text-align: center; }
+    .private-message-user { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .private-message-time { font-size: 11px; opacity: 0.7; float: right; margin-left: 12px; }
+    .private-message-text { font-size: 14px; line-height: 1.4; margin-top: 4px; }
+    .private-message-image { margin-top: 8px; max-width: 100%; border-radius: 12px; cursor: pointer; max-height: 200px; }
+    .input-area { padding: 15px; background: white; border-top: 1px solid #ddd; flex-shrink: 0; }
+    .msg-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 24px; margin-bottom: 10px; font-family: inherit; font-size: 14px; resize: vertical; }
+    .input-buttons { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+    .file-btn { background: #f0f0f0; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 12px; }
+    .send-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600; }
     .preview { margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 14px; display: flex; align-items: center; gap: 14px; }
     .preview-img { max-width: 60px; max-height: 60px; border-radius: 10px; }
-    .schedule-section { background: #f8f9fa; border-top: 2px solid #e0e0e0; padding: 20px; }
-    .schedule-section h3 { margin-bottom: 14px; font-size: 28px; color: #333; }
-    .info-item { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 32px; }
-    .plan-section { background: #f8f9fa; border-top: 2px solid #e0e0e0; padding: 20px; overflow-x: auto; }
-    .plan-section h3 { margin-bottom: 14px; font-size: 28px; color: #333; }
-    .plan-table { width: 100%; border-collapse: collapse; font-size: 28px; min-width: 600px; }
-    .plan-table th, .plan-table td { padding: 14px 10px; border-bottom: 1px solid #ddd; text-align: left; }
-    .plan-select { width: 100%; padding: 12px; font-size: 28px; }
-    .save-btn { background: #28a745; border: none; color: white; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-size: 28px; }
-    .quote-block { background: #f0f2f5; border-left: 4px solid #667eea; padding: 8px 12px; margin: 8px 0 8px 12px; border-radius: 8px; font-size: 13px; }
-    .quote-header { font-size: 12px; color: #667eea; font-weight: bold; margin-bottom: 4px; }
-    .quote-text { color: #555; }
-    .quote-image { max-width: 100px; max-height: 100px; margin-top: 4px; border-radius: 4px; cursor: pointer; }
-    .quote-btn { position: absolute; right: 8px; top: 8px; background: #667eea; color: white; border: none; border-radius: 20px; padding: 4px 10px; font-size: 11px; cursor: pointer; opacity: 0; transition: opacity 0.2s; }
-    .message:hover .quote-btn { opacity: 1; }
-    .private-quote-btn { position: absolute; right: 5px; top: 5px; background: #d946ef; color: white; border: none; border-radius: 15px; padding: 4px 8px; font-size: 10px; cursor: pointer; opacity: 0; transition: opacity 0.2s; }
-    .private-message:hover .private-quote-btn { opacity: 1; }
-    #commonQuoteContainer, #privateQuoteContainer { background: #e8eaf6; padding: 10px; margin: 8px 12px; border-radius: 12px; border-left: 4px solid #667eea; display: none; }
-    #privateQuoteContainer { border-left-color: #d946ef; background: #f3e5f5; }
     .auth-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-    .auth-form { background: white; padding: 40px; border-radius: 28px; width: 400px; text-align: center; }
-    .auth-form input { width: 100%; padding: 16px; margin-bottom: 18px; border: 1px solid #ddd; border-radius: 14px; font-size: 20px; }
-    .auth-form button { background: #667eea; color: white; border: none; padding: 16px; width: 100%; border-radius: 14px; font-size: 20px; cursor: pointer; }
+    .auth-form { background: white; padding: 30px; border-radius: 20px; width: 320px; text-align: center; }
+    .auth-form input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; }
+    .auth-form button { background: #667eea; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; font-size: 16px; cursor: pointer; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
     .modal.active { display: flex; }
     .modal-img { max-width: 95vw; max-height: 95vh; object-fit: contain; border-radius: 12px; }
     .modal-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-    
-    @media (max-width: 600px) {
-      .contacts-panel { width: 100%; border-right: none; border-bottom: 1px solid #ddd; max-height: 150px; display: flex; overflow-x: auto; padding: 8px; }
-      .contact-btn { display: inline-block; width: auto; margin-right: 8px; white-space: nowrap; }
-      .private-chat-container { flex-direction: column; }
-    }
-    
-    .current-value-8-17 { background-color: #bbdefb; display: inline-block; padding: 8px 14px; border-radius: 28px; font-size: 26px; }
-    .current-value-17-21 { background-color: #c8e6c9; display: inline-block; padding: 8px 14px; border-radius: 28px; font-size: 26px; }
-    .current-value-8-21 { background-color: #d000ff; display: inline-block; padding: 8px 14px; border-radius: 28px; font-size: 26px; color: white; }
-    .current-value-Вых { background-color: #ffcdd2; display: inline-block; padding: 8px 14px; border-radius: 28px; font-size: 26px; }
-    .current-value-empty { background-color: #e9ecef; display: inline-block; padding: 8px 14px; border-radius: 28px; color: #6c757d; font-size: 26px; }
-    .plan-date.saturday { background-color: #ffcc80; }
-    .plan-date.sunday { background-color: #ffb7b2; }
-    .rasp-saturday { background-color: #ffcc80 !important; border-radius: 12px; padding: 8px 12px; margin: 4px 0; }
-    .rasp-sunday { background-color: #ffb7b2 !important; border-radius: 12px; padding: 8px 12px; margin: 4px 0; }
-    
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -117,14 +68,12 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
-      backdrop-filter: blur(3px);
-      transition: opacity 0.3s;
     }
     .spinner {
-      width: 80px;
-      height: 80px;
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #667eea;
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #667eea;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
@@ -132,36 +81,18 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    .temp-message {
-      opacity: 0.7;
-      filter: grayscale(0.2);
-      position: relative;
-    }
-    .temp-message::after {
-      content: "⏳";
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      font-size: 20px;
-      opacity: 0.6;
-    }
-    .message-failed {
-      background: #ffcccc !important;
-      border: 1px solid red;
-    }
-
     .scroll-down-btn {
       position: absolute;
       bottom: 20px;
       right: 20px;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: #667eea;
       color: white;
       border: none;
       cursor: pointer;
-      font-size: 28px;
+      font-size: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -175,183 +106,95 @@
       opacity: 1;
       visibility: visible;
     }
-    .scroll-down-btn:hover {
-      background: #764ba2;
-      transform: scale(1.05);
-    }
-    .private-scroll-down-btn {
-      background: #d946ef;
-    }
-    .private-scroll-down-btn:hover {
-      background: #a855f7;
+    @media (max-width: 600px) {
+      .contacts-panel { width: 100%; border-right: none; border-bottom: 1px solid #ddd; max-height: 120px; display: flex; overflow-x: auto; padding: 8px; }
+      .contact-btn { display: inline-block; width: auto; margin-right: 8px; white-space: nowrap; }
+      .private-chat-container { flex-direction: column; }
+      .message, .private-message { max-width: 90%; }
+      .message-text, .private-message-text { font-size: 16px; }
     }
   </style>
-  
-  <!-- OneSignal SDK -->
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
-      await OneSignal.init({
-        appId: "79fde50f-5006-41a7-bc5f-b26d3fe9eae2",
-      });
-    });
-    
-    function subscribeToNotifications() {
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.registerForPushNotifications();
-        const userId = await OneSignal.getUserId();
-        console.log('OneSignal User ID:', userId);
-        if (userId && window.currentUser) {
-          // Сохраняем ID пользователя (опционально)
-          localStorage.setItem('onesignal_user_id', userId);
-        }
-      });
-    }
-  </script>
 </head>
 <body>
 <div id="app"></div>
 
-<div id="customDialog" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:10001;">
-  <div style="background:white; padding:30px; border-radius:20px; min-width:320px; text-align:center;">
-    <p id="dialogQuestion" style="font-size:28px; margin-bottom:20px;">Вопрос</p>
-    <input type="number" id="dialogInput" style="width:100%; padding:15px; font-size:24px; border-radius:12px; border:1px solid #ccc; text-align:center;">
-    <button id="dialogOk" style="margin-top:20px; padding:12px 30px; background:#667eea; color:white; border:none; border-radius:50px; font-size:24px; cursor:pointer;">ОК</button>
-  </div>
-</div>
-
 <script>
   // ==================== КОНФИГУРАЦИЯ ====================
-  // ⚠️ ЗАМЕНИТЕ ЭТОТ URL НА ВАШ GAS URL!
-  const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbzml4Sv8fFCyyhbwoS2rqCw4YI_uCoL2_vfsJr7J0I_6SuM7nzirBYHmlh609sK6cOT/exec';
-
-async function apiGet(action, params = {}) {
-  const url = new URL(GAS_API_URL);
-  url.searchParams.append('action', action);
-  Object.keys(params).forEach(key => {
-    if (params[key] !== undefined && params[key] !== null) {
-      url.searchParams.append(key, params[key]);
-    }
-  });
+  // ⚠️ ЗАМЕНИТЕ ЭТУ ПЕРЕМЕННУЮ НА ВАШ URL ИЗ GOOGLE APPS SCRIPT
+  const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbzxN77N3TjP-3T6iJl1BxXudTbau2q_YRgfpYzODgjiudAntaDfbX1R1VjTFzmnfTqn/exec';
   
-  try {
-    const response = await fetch(url.toString());
-    const result = await response.json();
-    if (result.success) {
-      return result.data;
-    } else {
-      console.error('API Error:', result.error);
-      return null;
-    }
-  } catch (error) {
-    console.error('Fetch Error:', error);
-    return null;
-  }
-}
-
-async function apiPost(action, data) {
-  try {
-    const response = await fetch(GAS_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ action, ...data })
-    });
-    const result = await response.json();
-    if (result.success) {
-      return result.data;
-    } else {
-      console.error('API Error:', result.error);
-      return null;
-    }
-  } catch (error) {
-    console.error('Fetch Error:', error);
-    return null;
-  }
-}
   // ==================== ПЕРЕМЕННЫЕ ====================
   let currentUser = null;
   let updateInterval = null;
   let privateUpdateInterval = null;
-  let planData = [];
-  let userAnswers = {};
-  let selectedReportFiles = [];
-  let autoLoginAttempted = false;
-  let commonAttachmentData = null;
-  let commonAttachmentType = null;
-  let commonAttachmentName = null;
-  let privateCurrentContact = null;
-  let privateAttachmentData = null;
-  let privateAttachmentType = null;
-  let privateAttachmentName = null;
-  let userNamesMap = {};
   let contactsUpdateInterval = null;
-  let privateLastCount = 0;
-  let commonLastCount = 0;
+  let privateCurrentContact = null;
+  let userNamesMap = {};
   let prevUnreadMap = {};
-  let cachedFingerprint = localStorage.getItem('device_fingerprint');
+  let cachedConversations = {};
+  let commonAttachmentData = null;
+  let privateAttachmentData = null;
   let currentCommonQuote = null;
   let currentPrivateQuote = null;
-  let cachedConversations = {};
+  let commonLastCount = 0;
   let loadingOverlay = null;
-  
   let tempMessageCounter = 0;
-  
   let unreadCommonCount = 0;
   let unreadPrivateCount = 0;
   let originalTitle = 'Корпоративный чат';
-  let notificationPermissionAsked = false;
   let blinkInterval = null;
   let lastNotificationTime = 0;
   const NOTIFICATION_DEBOUNCE = 3000;
-
-  // ==================== API ВЫЗОВЫ ====================
-  async function apiGet(action, params = {}) {
-    const url = new URL(GAS_API_URL);
-    url.searchParams.append('action', action);
-    Object.keys(params).forEach(key => {
-      if (params[key]) url.searchParams.append(key, params[key]);
-    });
-    
-    try {
-      const response = await fetch(url.toString());
-      const result = await response.json();
-      if (result.success) {
-        return result.data;
-      } else {
-        console.error('API Error:', result.error);
-        return null;
+  
+  // Функция для генерации отпечатка устройства (упрощённая версия)
+  let cachedFingerprint = localStorage.getItem('device_fingerprint');
+  function generateFingerprint() {
+    if (cachedFingerprint) return cachedFingerprint;
+    function simpleHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
       }
-    } catch (error) {
-      console.error('Fetch Error:', error);
-      return null;
+      return Math.abs(hash).toString(16);
     }
+    const fingerprintData = [
+      navigator.userAgent,
+      screen.width + 'x' + screen.height,
+      screen.colorDepth,
+      navigator.language
+    ];
+    const hash = simpleHash(fingerprintData.join('|'));
+    cachedFingerprint = hash;
+    localStorage.setItem('device_fingerprint', hash);
+    return hash;
   }
   
-  async function apiPost(action, data) {
-    try {
-      const response = await fetch(GAS_API_URL, {
+  // ==================== API КЛИЕНТ ====================
+  const api = {
+    async get(action, params = {}) {
+      const url = new URL(API_BASE_URL);
+      url.searchParams.append('action', action);
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+      const response = await fetch(url.toString());
+      const result = await response.json();
+      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
+      return result.data;
+    },
+    
+    async post(action, data = {}) {
+      const response = await fetch(`${API_BASE_URL}?action=${action}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, ...data })
       });
       const result = await response.json();
-      if (result.success) {
-        return result.data;
-      } else {
-        console.error('API Error:', result.error);
-        return null;
-      }
-    } catch (error) {
-      console.error('Fetch Error:', error);
-      return null;
+      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
+      return result.data;
     }
-  }
-
+  };
+  
   // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
   function escapeHtml(s) { if (!s) return ''; return s.replace(/[&<>]/g, function(m) { if (m==='&') return '&amp;'; if (m==='<') return '&lt;'; if (m==='>') return '&gt;'; return m; }); }
   
@@ -365,19 +208,11 @@ async function apiPost(action, data) {
     return d.toLocaleDateString();
   }
   
-  function showBigNotification(text, duration) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    div.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.8); color:white; padding:20px 40px; border-radius:20px; font-size:24px; z-index:10000; text-align:center; white-space:nowrap;';
-    document.body.appendChild(div);
-    setTimeout(function() { div.remove(); }, duration || 6000);
-  }
-  
   function formatMessageWithLinks(text) {
     if (!text) return '';
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function(url) {
-      return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="message-link">' + url + '</a>';
+      return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
     });
   }
   
@@ -388,87 +223,32 @@ async function apiPost(action, data) {
       notificationSound.play().catch(e => console.log('Звук не воспроизведён', e));
     } catch(e) {}
   }
-
-  function scrollToBottom(element, withDelay = true) {
-    if (!element) return;
-    const scroll = () => {
-      element.scrollTop = element.scrollHeight;
-    };
-    if (withDelay) {
-      scroll();
-      setTimeout(scroll, 100);
-      setTimeout(scroll, 300);
-      setTimeout(scroll, 500);
-      setTimeout(scroll, 1000);
-    } else {
-      scroll();
+  
+  function requestBrowserNotificationPermission() {
+    if (!('Notification' in window)) return;
+    if (Notification.permission === 'default') {
+      setTimeout(() => Notification.requestPermission(), 3000);
     }
   }
-
-  function setupScrollObserver(area, button, isPrivate = false) {
-    if (!area || !button) return;
-    
-    const checkScroll = () => {
-      const isAtBottom = (area.scrollHeight - area.scrollTop) <= area.clientHeight + 50;
-      if (isAtBottom) {
-        button.classList.remove('show');
-      } else {
-        button.classList.add('show');
-      }
-    };
-    
-    area.addEventListener('scroll', checkScroll);
-    const resizeObserver = new ResizeObserver(() => checkScroll());
-    resizeObserver.observe(area);
-    setTimeout(checkScroll, 500);
-    
-    return () => {
-      area.removeEventListener('scroll', checkScroll);
-      resizeObserver.disconnect();
-    };
-  }
-
-  function showBrowserNotification(title, body, onClickUrl, isPrivate = false) {
+  
+  function showBrowserNotification(title, body) {
     if (!('Notification' in window)) return;
     if (Notification.permission !== 'granted') return;
-    
     const now = Date.now();
     if (now - lastNotificationTime < NOTIFICATION_DEBOUNCE) return;
     lastNotificationTime = now;
-    
     try {
-      const icon = isPrivate ? 
-        'https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png' :
-        'https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png';
-      
-      const notification = new Notification(title, {
-        body: body,
-        icon: icon,
-        silent: false,
-        tag: isPrivate ? 'private-chat' : 'common-chat',
-        renotify: true
-      });
-      
-      notification.onclick = function() {
-        window.focus();
-        if (onClickUrl) {
-          window.location.href = onClickUrl;
-        }
-        notification.close();
-      };
-      
+      const notification = new Notification(title, { body: body, icon: 'https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png' });
+      notification.onclick = () => { window.focus(); notification.close(); };
       setTimeout(() => notification.close(), 10000);
-    } catch(e) {
-      console.log('Ошибка показа уведомления:', e);
-    }
+    } catch(e) {}
   }
-
+  
   function startTitleBlink(message) {
     if (blinkInterval) clearInterval(blinkInterval);
-    
     let blinkCount = 0;
     blinkInterval = setInterval(() => {
-      if (blinkCount >= 12) {
+      if (blinkCount >= 10) {
         clearInterval(blinkInterval);
         blinkInterval = null;
         updateTitleWithCount();
@@ -478,106 +258,65 @@ async function apiPost(action, data) {
       }
     }, 500);
   }
-
+  
   function stopTitleBlink() {
-    if (blinkInterval) {
-      clearInterval(blinkInterval);
-      blinkInterval = null;
-    }
+    if (blinkInterval) { clearInterval(blinkInterval); blinkInterval = null; }
     updateTitleWithCount();
   }
-
+  
   function updateTitleWithCount() {
     const totalUnread = unreadCommonCount + unreadPrivateCount;
-    if (totalUnread > 0) {
-      document.title = `(${totalUnread}) ${originalTitle}`;
+    document.title = totalUnread > 0 ? `(${totalUnread}) ${originalTitle}` : originalTitle;
+  }
+  
+  function scrollToBottom(element, withDelay = true) {
+    if (!element) return;
+    const scroll = () => { element.scrollTop = element.scrollHeight; };
+    if (withDelay) {
+      scroll();
+      setTimeout(scroll, 100);
+      setTimeout(scroll, 300);
     } else {
-      document.title = originalTitle;
+      scroll();
     }
   }
-
-  function highlightChatArea(area, color) {
-    if (!area) return;
-    area.style.transition = 'background 0.3s';
-    const originalBg = window.getComputedStyle(area).backgroundColor;
-    area.style.backgroundColor = color;
-    setTimeout(() => { area.style.backgroundColor = originalBg; }, 800);
+  
+  function setupScrollObserver(area, button) {
+    if (!area || !button) return;
+    const checkScroll = () => {
+      const isAtBottom = (area.scrollHeight - area.scrollTop) <= area.clientHeight + 50;
+      button.classList.toggle('show', !isAtBottom);
+    };
+    area.addEventListener('scroll', checkScroll);
+    const resizeObserver = new ResizeObserver(() => checkScroll());
+    resizeObserver.observe(area);
+    setTimeout(checkScroll, 500);
   }
-
-  function generateFingerprint() {
-    if (cachedFingerprint) return cachedFingerprint;
-    function simpleHash(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+  
+  function compressImage(dataUrl, originalName, callback) {
+    var img = new Image();
+    img.onload = function() {
+      var MAX_WIDTH = 1280;
+      var MAX_HEIGHT = 1280;
+      var width = img.width;
+      var height = img.height;
+      if (width > height) {
+        if (width > MAX_WIDTH) { height = Math.round(height * MAX_WIDTH / width); width = MAX_WIDTH; }
+      } else {
+        if (height > MAX_HEIGHT) { width = Math.round(width * MAX_HEIGHT / height); height = MAX_HEIGHT; }
       }
-      return Math.abs(hash).toString(16);
-    }
-    let webglFp = '';
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (gl) {
-        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-        if (debugInfo) {
-          const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-          const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
-          webglFp = `${renderer}|${vendor}`;
-        } else {
-          webglFp = gl.getParameter(gl.VENDOR) + '|' + gl.getParameter(gl.RENDERER);
-        }
-        const extensions = gl.getSupportedExtensions();
-        if (extensions) webglFp += '|' + extensions.sort().join(',');
-      }
-    } catch(e) { webglFp = 'webgl_error'; }
-    let fontsFp = '';
-    const testFonts = ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Palatino', 'Garamond', 'Comic Sans MS', 'Trebuchet MS', 'Arial Black', 'Impact', 'Lucida Console', 'Tahoma', 'Segoe UI', 'Roboto'];
-    const baseFont = 'monospace';
-    const canvasFont = document.createElement('canvas');
-    const ctxFont = canvasFont.getContext('2d');
-    if (ctxFont) {
-      const text = 'mmmmmmmmmmlli';
-      ctxFont.font = `72px ${baseFont}`;
-      const baseWidth = ctxFont.measureText(text).width;
-      for (let font of testFonts) {
-        ctxFont.font = `72px ${font}, ${baseFont}`;
-        const width = ctxFont.measureText(text).width;
-        if (width !== baseWidth) fontsFp += font + ',';
-      }
-    }
-    let pluginsFp = '';
-    if (navigator.plugins && navigator.plugins.length) {
-      const pluginNames = [];
-      for (let i = 0; i < navigator.plugins.length; i++) {
-        pluginNames.push(navigator.plugins[i].name);
-      }
-      pluginsFp = pluginNames.sort().join('|');
-    }
-    const languages = navigator.languages ? navigator.languages.join(',') : navigator.language;
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const hardware = `${navigator.hardwareConcurrency || 0}|${navigator.deviceMemory || 0}|${navigator.maxTouchPoints || 0}`;
-    const fingerprintData = [
-      navigator.userAgent,
-      languages,
-      timeZone,
-      screen.width + 'x' + screen.height,
-      screen.availWidth + 'x' + screen.availHeight,
-      screen.colorDepth,
-      screen.pixelDepth,
-      hardware,
-      webglFp,
-      fontsFp,
-      pluginsFp
-    ];
-    const fingerprintString = fingerprintData.join('|');
-    const hash = simpleHash(fingerprintString);
-    cachedFingerprint = hash;
-    localStorage.setItem('device_fingerprint', hash);
-    return hash;
+      var canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      var compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+      var compressedName = originalName.replace(/\.[^/.]+$/, "") + "_compressed.jpg";
+      callback(compressedDataUrl, compressedName);
+    };
+    img.src = dataUrl;
   }
-
+  
   function openModalImage(url) {
     var modal = document.getElementById('imageModal');
     if (!modal) {
@@ -596,857 +335,37 @@ async function apiPost(action, data) {
     imgEl.src = url;
     modal.classList.add('active');
   }
-  window.openImageModal = openModalImage;
-
-  function compressImage(dataUrl, originalName, callback) {
-    var img = new Image();
-    img.onload = function() {
-      var MAX_WIDTH = 1280;
-      var MAX_HEIGHT = 1280;
-      var QUALITY = 0.7;
-      var width = img.width;
-      var height = img.height;
-      if (width > height) {
-        if (width > MAX_WIDTH) { height = Math.round(height * MAX_WIDTH / width); width = MAX_WIDTH; }
-      } else {
-        if (height > MAX_HEIGHT) { width = Math.round(width * MAX_HEIGHT / height); height = MAX_HEIGHT; }
-      }
-      var canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      var ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
-      var compressedDataUrl = canvas.toDataURL('image/jpeg', QUALITY);
-      var compressedName = originalName.replace(/\.[^/.]+$/, "") + "_compressed.jpg";
-      callback(compressedDataUrl, compressedName);
-    };
-    img.src = dataUrl;
-  }
-
-  // ==================== ОБЩИЙ ЧАТ ====================
-  async function loadCommonMessages(forceScroll) {
-    console.log('loadCommonMessages вызвана');
-    const msgs = await apiGet('getMessages');
-    if (!msgs) return;
-    
-    var area = document.getElementById('commonMessagesArea');
-    if (!area) return;
-    
-    var oldCount = commonLastCount;
-    commonLastCount = msgs.length;
-    
-    if (msgs.length > oldCount && oldCount > 0 && currentUser) {
-      var lastMsg = msgs[msgs.length - 1];
-      var isFromMe = lastMsg && (lastMsg.user === currentUser.name || lastMsg.user.indexOf(currentUser.email) !== -1);
-      
-      if (!isFromMe) {
-        unreadCommonCount++;
-        updateTitleWithCount();
-        playNotificationSound();
-        
-        const senderName = lastMsg.user ? lastMsg.user.split(' (')[0] : 'Пользователь';
-        const messageText = lastMsg.message || 'Изображение';
-        showBrowserNotification('Новое сообщение в общем чате', senderName + ': ' + (messageText.length > 100 ? messageText.substring(0, 100) + '...' : messageText), window.location.href, false);
-        startTitleBlink('Новое сообщение');
-        highlightChatArea(area, '#e8eaf6');
-      }
-    }
-    
-    if (!msgs || !msgs.length) {
-      area.innerHTML = '<div class="clearfix"></div><div style="text-align:center;color:#999;padding:20px">Нет сообщений</div>';
-      return;
-    }
-    
-    var html = '';
-    for (var i = 0; i < msgs.length; i++) {
-      var m = msgs[i];
-      var isOwn = currentUser && ((m.user === currentUser.name) || (m.user.indexOf(currentUser.email) !== -1));
-      var userName = m.user ? m.user.split(' (')[0] : 'Пользователь';
-      var msgClass = isOwn ? 'message message-own' : 'message message-other';
-      html += '<div class="' + msgClass + '" data-msg=\'' + JSON.stringify({
-        user: userName,
-        text: m.message || '',
-        imageUrl: m.imageUrl || '',
-        timestamp: m.timestamp
-      }).replace(/'/g, "\\'") + '\' style="position: relative; margin-bottom: 15px; padding: 12px 15px;">';
-      html += '<div class="message-user">' + escapeHtml(userName) + '<span class="message-time">' + formatTime(m.timestamp) + '</span></div>';
-      if (m.quote) {
-        html += '<div class="quote-block">';
-        html += '<div class="quote-header">📎 ' + escapeHtml(m.quote.user) + ' писал(а):</div>';
-        html += '<div class="quote-text">' + escapeHtml(m.quote.text || '(без текста)') + '</div>';
-        if (m.quote.imageUrl) html += '<img src="' + m.quote.imageUrl + '" class="quote-image" onclick="openImageModal(this.src)">';
-        html += '</div>';
-      }
-      if (m.message) html += '<div class="message-text">' + formatMessageWithLinks(escapeHtml(m.message)) + '</div>';
-      if (m.imageUrl) html += '<img class="message-image" src="' + m.imageUrl + '" alt="Изображение" onclick="openImageModal(this.src)">';
-      var quoteData = { user: userName, text: m.message || '', imageUrl: m.imageUrl || '', timestamp: m.timestamp };
-      var quoteDataJson = JSON.stringify(quoteData).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      html += '<button class="quote-btn" onclick="setCommonQuote(' + quoteDataJson + '); event.stopPropagation();">💬 Ответить</button>';
-      html += '</div>';
-    }
-    area.innerHTML = html + '<div class="clearfix"></div>';
-    
-    if (forceScroll) {
-      scrollToBottom(area, true);
-    }
-    
-    area.onclick = function(e) {
-      if (e.target.tagName === 'A' || e.target.tagName === 'IMG' || e.target.closest('.quote-btn')) return;
-      var msgDiv = e.target.closest('.message');
-      if (msgDiv && msgDiv.dataset.msg) {
-        try {
-          var msgData = JSON.parse(msgDiv.dataset.msg);
-          setCommonQuote(msgData);
-          msgDiv.style.transition = 'background 0.2s';
-          var originalBg = window.getComputedStyle(msgDiv).backgroundColor;
-          msgDiv.style.backgroundColor = '#d0e0ff';
-          setTimeout(function() { msgDiv.style.backgroundColor = originalBg; }, 300);
-        } catch(e) { console.error(e); }
-      }
-    };
-  }
-
-  function setCommonQuote(message) {
-    currentCommonQuote = message;
-    var quoteContainer = document.getElementById('commonQuoteContainer');
-    var quoteContent = document.getElementById('commonQuoteContent');
-    if (quoteContainer && quoteContent) {
-      var quoteHtml = '<div style="font-size: 12px; color: #667eea; font-weight: bold; margin-bottom: 4px;">📎 Цитата от ' + escapeHtml(message.user) + ':</div>';
-      quoteHtml += '<div style="font-size: 13px; color: #555; word-wrap: break-word;">' + escapeHtml(message.text || '(без текста)') + '</div>';
-      if (message.imageUrl) quoteHtml += '<img src="' + message.imageUrl + '" style="max-width: 60px; max-height: 60px; margin-top: 5px; border-radius: 5px;">';
-      quoteContent.innerHTML = quoteHtml;
-      quoteContainer.style.display = 'block';
-    }
-    var messageInput = document.getElementById('commonMessageInput');
-    if (messageInput) {
-      messageInput.placeholder = 'Ответ на сообщение от ' + escapeHtml(message.user) + '...';
-      messageInput.focus();
-    }
-  }
+  window.openModalImage = openModalImage;
   
-  function cancelCommonQuote() {
-    currentCommonQuote = null;
-    var quoteContainer = document.getElementById('commonQuoteContainer');
-    if (quoteContainer) quoteContainer.style.display = 'none';
-    var messageInput = document.getElementById('commonMessageInput');
-    if (messageInput) messageInput.placeholder = 'Сообщение...';
-  }
-  
-  function handleCommonAttachmentSelect(event) {
-    var file = event.target.files[0];
-    if (!file) return;
-    if (!file.type.startsWith('image/')) {
-      alert('Поддерживаются только изображения');
-      event.target.value = '';
-      return;
-    }
-    var previewDiv = document.getElementById('commonAttachmentPreview');
-    if (previewDiv) {
-      previewDiv.innerHTML = '<span>🖼️ Обработка изображения...</span>';
-      previewDiv.style.display = 'flex';
-    }
-    var reader = new FileReader();
-    reader.onload = function(ev) {
-      compressImage(ev.target.result, file.name, function(compressedDataUrl, compressedName) {
-        commonAttachmentData = compressedDataUrl;
-        commonAttachmentName = compressedName;
-        if (previewDiv) {
-          previewDiv.innerHTML = '<img src="'+compressedDataUrl+'" class="preview-img"><span>'+escapeHtml(compressedName)+'</span><button class="file-btn" onclick="clearCommonAttachment()">✕</button>';
-          previewDiv.style.display = 'flex';
-        }
-        console.log('Изображение для общего чата сжато, размер:', compressedDataUrl.length);
-      });
-    };
-    reader.readAsDataURL(file);
-  }
-  
-  function clearCommonAttachment() {
-    commonAttachmentData = null;
-    commonAttachmentName = null;
-    var previewDiv = document.getElementById('commonAttachmentPreview');
-    if (previewDiv) { previewDiv.innerHTML = ''; previewDiv.style.display = 'none'; }
-    var fileInput = document.getElementById('commonFileInput');
-    if (fileInput) fileInput.value = '';
-  }
-
-  async function sendCommonMessageWithQuote() {
-    var input = document.getElementById('commonMessageInput');
-    var msg = input.value.trim();
-    var msgString = String(msg || '');
-    var hasText = msgString !== '';
-    var hasImage = commonAttachmentData !== null;
-    var hasQuote = currentCommonQuote !== null;
-    
-    if (!hasText && !hasImage && !hasQuote) {
-      alert('Напишите сообщение, добавьте изображение или ответьте на сообщение');
-      return;
-    }
-    
-    const imageDataToSend = commonAttachmentData;
-    const quoteDataToSend = currentCommonQuote ? {
-      user: currentCommonQuote.user,
-      text: currentCommonQuote.text,
-      imageUrl: currentCommonQuote.imageUrl || null
-    } : null;
-    
-    input.value = '';
-    clearCommonAttachment();
-    cancelCommonQuote();
-    
-    var btn = document.getElementById('commonSendBtn');
-    if (btn) btn.disabled = true;
-    
-    const result = await apiPost('sendMessageWithQuote', {
-      message: msgString,
-      userEmail: currentUser.email,
-      userName: currentUser.name,
-      imageData: imageDataToSend,
-      quotedMessage: quoteDataToSend
-    });
-    
-    if (btn) btn.disabled = false;
-    
-    if (result) {
-      loadCommonMessages(true);
-    } else {
-      alert('Ошибка отправки сообщения');
-    }
-  }
-
-  // ==================== ЛИЧНЫЙ ЧАТ ====================
-  async function loadContactsWithUnread() {
-    console.log('loadContactsWithUnread вызвана');
-    const contacts = await apiGet('getUsersWithUnreadStatus', { userEmail: currentUser.email });
-    if (!contacts) return;
-    
-    const panel = document.getElementById('contactsPanel');
-    if (!panel) return;
-    
-    for (let i = 0; i < contacts.length; i++) userNamesMap[contacts[i].email] = contacts[i].name;
-    const newUnreadMap = {};
-    for (let i = 0; i < contacts.length; i++) {
-      newUnreadMap[contacts[i].email] = contacts[i].hasUnread;
-      if (contacts[i].hasUnread && !prevUnreadMap[contacts[i].email]) playNotificationSound();
-    }
-    prevUnreadMap = newUnreadMap;
-    
-    let html = '';
-    for (let i = 0; i < contacts.length; i++) {
-      const c = contacts[i];
-      const activeClass = (privateCurrentContact === c.email) ? 'contact-active' : '';
-      const unreadClass = c.hasUnread ? 'contact-unread' : '';
-      html += `<button class="contact-btn ${activeClass} ${unreadClass}" data-email="${c.email}" onclick="openPrivateChat('${c.email}')">${escapeHtml(c.name)}</button>`;
-    }
-    panel.innerHTML = html || '<div style="padding:10px;color:#999;">Нет других пользователей</div>';
-    
-    if (contacts.length > 0 && !privateCurrentContact) {
-      const lastContactEmail = await apiGet('getLastPrivateContact', { userEmail: currentUser.email });
-      let contactToOpen = lastContactEmail;
-      if (!contactToOpen && contacts.length > 0) contactToOpen = contacts[0].email;
-      if (contactToOpen) openPrivateChat(contactToOpen);
-    } else if (privateCurrentContact && !cachedConversations[privateCurrentContact]) {
-      fetchLatestMessages(privateCurrentContact, false);
-    }
-  }
-  
-  async function fetchLatestMessages(contactEmail, forceScroll) {
-    const messages = await apiGet('getConversation', { userEmail: currentUser.email, otherEmail: contactEmail });
-    if (messages) {
-      cachedConversations[contactEmail] = messages.slice(-50);
-      displayPrivateMessagesWithScrollRestore(messages, forceScroll ? null : undefined);
-    }
-  }
-  
-  function displayPrivateMessagesWithScrollRestore(messages, savedScrollPosition) {
-    const area = document.getElementById('privateMessagesArea');
-    if (!area) return;
-    if (!messages || !messages.length) {
-      area.innerHTML = '<div class="clearfix"></div><div style="text-align:center;color:#999;padding:20px">Нет сообщений с этим пользователем</div>';
-      return;
-    }
-    let html = '';
-    for (let i = 0; i < messages.length; i++) {
-      const m = messages[i];
-      const isOwn = (m.sender === currentUser.email);
-      const senderName = isOwn ? 'Вы' : (userNamesMap[m.sender] || m.sender);
-      const msgClass = isOwn ? 'private-message private-message-own' : 'private-message private-message-other';
-      html += '<div class="' + msgClass + '" data-msg=\'' + JSON.stringify({
-        sender: senderName,
-        text: m.message || '',
-        imageUrl: m.imageUrl || '',
-        timestamp: m.timestamp,
-        isOwn: isOwn
-      }).replace(/'/g, "\\'") + '\' style="position: relative; margin-bottom: 15px; padding: 12px 15px;">';
-      html += '<div class="private-message-user">' + escapeHtml(senderName) + '<span class="private-message-time">' + formatTime(m.timestamp) + '</span></div>';
-      if (m.quote) {
-        html += '<div class="quote-block" style="border-left-color: #d946ef;">';
-        html += '<div class="quote-header">📎 ' + escapeHtml(m.quote.sender || m.quote.user) + ' писал(а):</div>';
-        html += '<div class="quote-text">' + escapeHtml(m.quote.text || '(без текста)') + '</div>';
-        if (m.quote.imageUrl) html += '<img src="' + m.quote.imageUrl + '" class="quote-image" onclick="openImageModal(this.src)">';
-        html += '</div>';
-      }
-      if (m.message) html += '<div class="private-message-text">' + formatMessageWithLinks(escapeHtml(m.message)) + '</div>';
-      if (m.imageUrl) html += '<img class="private-message-image" src="' + m.imageUrl + '" alt="Изображение" onclick="openImageModal(this.src)">';
-      const quoteData = { sender: senderName, text: m.message || '', imageUrl: m.imageUrl || '', timestamp: m.timestamp };
-      const quoteDataJson = JSON.stringify(quoteData).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      html += '<button class="private-quote-btn" onclick="setPrivateQuote(' + quoteDataJson + '); event.stopPropagation();">💬 Ответить</button>';
-      html += '</div>';
-    }
-    area.innerHTML = html + '<div class="clearfix"></div>';
-    
-    if (savedScrollPosition === null || savedScrollPosition === undefined) {
-      scrollToBottom(area, true);
-    } else {
-      area.scrollTop = savedScrollPosition;
-    }
-    
-    area.onclick = function(e) {
-      if (e.target.tagName === 'A' || e.target.tagName === 'IMG' || e.target.closest('.private-quote-btn')) return;
-      var msgDiv = e.target.closest('.private-message');
-      if (msgDiv && msgDiv.dataset.msg) {
-        try {
-          var msgData = JSON.parse(msgDiv.dataset.msg);
-          setPrivateQuote(msgData);
-          msgDiv.style.transition = 'background 0.2s';
-          var originalBg = window.getComputedStyle(msgDiv).backgroundColor;
-          msgDiv.style.backgroundColor = '#f0d0ff';
-          setTimeout(function() { msgDiv.style.backgroundColor = originalBg; }, 300);
-        } catch(e) { console.error(e); }
-      }
-    };
-  }
-  
-  async function openPrivateChat(email) {
-    if (privateCurrentContact === email) return;
-
-    if (prevUnreadMap[email]) {
-      delete prevUnreadMap[email];
-      unreadPrivateCount = Math.max(0, unreadPrivateCount - 1);
-      updateTitleWithCount();
-    }
-
-    const prevActive = document.querySelector('.contact-active');
-    if (prevActive) prevActive.classList.remove('contact-active');
-
-    const newActive = document.querySelector(`.contact-btn[data-email="${email}"]`);
-    if (newActive) {
-      newActive.classList.add('contact-active');
-      newActive.classList.remove('contact-unread');
-    }
-
-    privateCurrentContact = email;
-
-    await apiPost('markMessagesAsRead', { userEmail: currentUser.email, otherEmail: email });
-    loadContactsWithUnread();
-
-    const area = document.getElementById('privateMessagesArea');
-    if (area) {
-      area.innerHTML = '<div class="clearfix"></div><div style="text-align:center;color:#999;padding:20px">Загрузка сообщений...</div>';
-    }
-    fetchLatestMessages(email, true);
-
-    if (privateUpdateInterval) clearInterval(privateUpdateInterval);
-    privateUpdateInterval = setInterval(function() {
-      if (privateCurrentContact === email) {
-        refreshPrivateMessages(email);
-      }
-    }, 8000);
-  }
-  
-  async function refreshPrivateMessages(email) {
-    const area = document.getElementById('privateMessagesArea');
-    if (!area || privateCurrentContact !== email) return;
-    
-    const oldLength = cachedConversations[email] ? cachedConversations[email].length : 0;
-    const wasAtBottom = (area.scrollHeight - area.scrollTop) <= area.clientHeight + 50;
-    const savedScrollPosition = wasAtBottom ? null : area.scrollTop;
-    
-    const messages = await apiGet('getConversation', { userEmail: currentUser.email, otherEmail: email });
-    if (!messages) return;
-    
-    if (messages.length > oldLength && oldLength > 0) {
-      const lastMsg = messages[messages.length - 1];
-      const isFromMe = (lastMsg.sender === currentUser.email);
-      
-      if (!isFromMe) {
-        unreadPrivateCount++;
-        updateTitleWithCount();
-        playNotificationSound();
-        
-        const senderName = userNamesMap[lastMsg.sender] || lastMsg.sender;
-        const messageText = lastMsg.message || 'Изображение';
-        showBrowserNotification('Личное сообщение от ' + senderName, messageText.length > 100 ? messageText.substring(0, 100) + '...' : messageText, window.location.href, true);
-        startTitleBlink('Личное сообщение');
-        highlightChatArea(area, '#f3e5f5');
-        loadContactsWithUnread();
-      }
-    }
-    
-    cachedConversations[email] = messages.slice(-50);
-    displayPrivateMessagesWithScrollRestore(messages, savedScrollPosition);
-  }
-  
-  function loadPrivateConversation(forceScroll) {
-    if (!privateCurrentContact) return;
-    fetchLatestMessages(privateCurrentContact, forceScroll);
-  }
-  
-  function setPrivateQuote(message) {
-    currentPrivateQuote = message;
-    var quoteContainer = document.getElementById('privateQuoteContainer');
-    var quoteContent = document.getElementById('privateQuoteContent');
-    if (quoteContainer && quoteContent) {
-      var quoteHtml = '<div style="font-size: 12px; color: #d946ef; font-weight: bold; margin-bottom: 4px;">📎 Цитата от ' + escapeHtml(message.sender) + ':</div>';
-      quoteHtml += '<div style="font-size: 13px; color: #555; word-wrap: break-word;">' + escapeHtml(message.text || '(без текста)') + '</div>';
-      if (message.imageUrl) quoteHtml += '<img src="' + message.imageUrl + '" style="max-width: 60px; max-height: 60px; margin-top: 5px; border-radius: 5px;">';
-      quoteContent.innerHTML = quoteHtml;
-      quoteContainer.style.display = 'block';
-    }
-    var messageInput = document.getElementById('privateMessageInput');
-    if (messageInput) {
-      messageInput.placeholder = 'Ответ на сообщение от ' + escapeHtml(message.sender) + '...';
-      messageInput.focus();
-    }
-  }
-  
-  function cancelPrivateQuote() {
-    currentPrivateQuote = null;
-    var quoteContainer = document.getElementById('privateQuoteContainer');
-    if (quoteContainer) quoteContainer.style.display = 'none';
-    var messageInput = document.getElementById('privateMessageInput');
-    if (messageInput) messageInput.placeholder = 'Сообщение...';
-  }
-  
-  function handlePrivateAttachmentSelect(event) {
-    var file = event.target.files[0];
-    if (!file) return;
-    if (!file.type.startsWith('image/')) {
-      alert('Поддерживаются только изображения');
-      event.target.value = '';
-      return;
-    }
-    var previewDiv = document.getElementById('privateAttachmentPreview');
-    if (previewDiv) {
-      previewDiv.innerHTML = '<span>🖼️ Обработка изображения...</span>';
-      previewDiv.style.display = 'flex';
-    }
-    var reader = new FileReader();
-    reader.onload = function(ev) {
-      compressImage(ev.target.result, file.name, function(compressedDataUrl, compressedName) {
-        privateAttachmentData = compressedDataUrl;
-        privateAttachmentName = compressedName;
-        if (previewDiv) {
-          previewDiv.innerHTML = '<img src="'+compressedDataUrl+'" class="preview-img"><span>'+escapeHtml(compressedName)+'</span><button class="file-btn" onclick="clearPrivateAttachment()">✕</button>';
-          previewDiv.style.display = 'flex';
-        }
-        console.log('Изображение для личного чата сжато, размер:', compressedDataUrl.length);
-      });
-    };
-    reader.readAsDataURL(file);
-  }
-  
-  function clearPrivateAttachment() {
-    privateAttachmentData = null;
-    privateAttachmentName = null;
-    var previewDiv = document.getElementById('privateAttachmentPreview');
-    if (previewDiv) { previewDiv.innerHTML = ''; previewDiv.style.display = 'none'; }
-    var fileInput = document.getElementById('privateFileInput');
-    if (fileInput) fileInput.value = '';
-  }
-
-  async function sendPrivateMessageWithQuote() {
-    if (!privateCurrentContact) {
-      alert('Сначала выберите собеседника');
-      return;
-    }
-    
-    var input = document.getElementById('privateMessageInput');
-    var msg = input.value.trim();
-    var msgString = String(msg || '');
-    var hasText = msgString !== '';
-    var hasImage = privateAttachmentData !== null;
-    var hasQuote = currentPrivateQuote !== null;
-    
-    if (!hasText && !hasImage && !hasQuote) {
-      alert('Напишите сообщение, добавьте изображение или ответьте на сообщение');
-      return;
-    }
-    
-    const imageDataToSend = privateAttachmentData;
-    const quoteDataToSend = currentPrivateQuote ? {
-      sender: currentPrivateQuote.sender,
-      text: currentPrivateQuote.text,
-      imageUrl: currentPrivateQuote.imageUrl || null
-    } : null;
-    
-    input.value = '';
-    clearPrivateAttachment();
-    cancelPrivateQuote();
-    
-    var btn = document.getElementById('privateSendBtn');
-    if (btn) btn.disabled = true;
-    
-    const result = await apiPost('sendPrivateMessageWithQuote', {
-      senderEmail: currentUser.email,
-      recipientEmail: privateCurrentContact,
-      message: msgString,
-      imageData: imageDataToSend,
-      quotedMessage: quoteDataToSend
-    });
-    
-    if (btn) btn.disabled = false;
-    
-    if (result) {
-      loadPrivateConversation(true);
-      loadContactsWithUnread();
-    } else {
-      alert('Ошибка отправки сообщения');
-    }
-  }
-
-  // ==================== РАСПИСАНИЕ И ПЛАН ====================
-  async function loadRasp() {
-    var cont = document.getElementById('raspContent');
-    if (!cont) return;
-    cont.innerHTML = 'Загрузка...';
-    
-    const data = await apiGet('getUserRaspData', { userEmail: currentUser.email });
-    if (data && data.length) {
-      var html = '';
-      for (var i = 0; i < data.length; i++) {
-        var item = data[i];
-        var formattedItem = formatRaspItem(item);
-        html += '<div class="info-item ' + formattedItem.className + '">' + formattedItem.html + '</div>';
-      }
-      cont.innerHTML = html;
-    } else {
-      cont.innerHTML = '<div>Нет данных</div>';
-    }
-  }
-  
-  function formatRaspItem(item) {
-    if (!item) return { html: '', className: '' };
-    var trimmed = item.toString().trim();
-    var lowerItem = trimmed.toLowerCase();
-    if (lowerItem === 'с 8-00') return { html: '<span class="current-value-8-17">8-17</span>', className: '' };
-    if (lowerItem === 'с 17-00') return { html: '<span class="current-value-17-21">17-21</span>', className: '' };
-    if (lowerItem === '8-21') return { html: '<span class="current-value-8-21">8-21</span>', className: '' };
-    if (lowerItem === 'вых.' || lowerItem === 'вых') return { html: '<span class="current-value-Вых">Вых.</span>', className: '' };
-    var dateInfo = parseDateFromString(trimmed);
-    if (dateInfo && dateInfo.isDate) {
-      var dayOfWeek = dateInfo.dayOfWeek;
-      var dateClass = '';
-      if (dayOfWeek === 0) dateClass = 'rasp-saturday';
-      if (dayOfWeek === 1) dateClass = 'rasp-sunday';
-      return { html: escapeHtml(trimmed), className: dateClass };
-    }
-    return { html: escapeHtml(trimmed), className: '' };
-  }
-  
-  function parseDateFromString(str) {
-    try {
-      var parts = str.split('.');
-      if (parts.length === 3) {
-        var day = parseInt(parts[0], 10);
-        var month = parseInt(parts[1], 10) - 1;
-        var year = parseInt(parts[2], 10);
-        var date = new Date(year, month, day);
-        if (!isNaN(date.getTime()) && date.getDate() === day && date.getMonth() === month) return { isDate: true, dayOfWeek: date.getDay() };
-      }
-      return { isDate: false };
-    } catch(e) { return { isDate: false }; }
-  }
-  
-  function formatDateAndDay(dateString) {
-    try {
-      if (dateString instanceof Date && !isNaN(dateString.getTime())) {
-        var day = dateString.getDate().toString().padStart(2,'0');
-        var month = (dateString.getMonth()+1).toString().padStart(2,'0');
-        var year = dateString.getFullYear();
-        return { text: `${day}.${month}.${year}`, dayOfWeek: dateString.getDay() };
-      }
-      var str = dateString.toString().trim();
-      var parts = str.split('.');
-      if (parts.length === 3) {
-        var day = parseInt(parts[0],10);
-        var month = parseInt(parts[1],10)-1;
-        var year = parseInt(parts[2],10);
-        var date = new Date(year, month, day);
-        if (!isNaN(date.getTime()) && date.getDate()===day && date.getMonth()===month && date.getFullYear()===year) return { text: str, dayOfWeek: date.getDay() };
-      }
-      return { text: str, dayOfWeek: null };
-    } catch(e) { return { text: dateString, dayOfWeek: null }; }
-  }
-  
-  async function loadPlan() {
-    var cont = document.getElementById('planContent');
-    if (!cont) return;
-    cont.innerHTML = 'Загрузка плана...';
-    
-    const planRes = await apiGet('getPlanData');
-    if (!planRes || planRes.error) {
-      cont.innerHTML = '<div>Ошибка загрузки плана</div>';
-      return;
-    }
-    planData = planRes || [];
-    
-    const answers = await apiGet('getUserPlanAnswers', { userEmail: currentUser.email });
-    if (answers) userAnswers = answers;
-    renderPlan();
-  }
-  
-  function renderPlan() {
-    var cont = document.getElementById('planContent');
-    if (!cont) return;
-    if (!planData.length) { cont.innerHTML = '<div>Нет данных</div>'; return; }
-    var html = '<table class="plan-table"><thead><tr><th>Дата</th><th>Текущее значение</th><th>Выбрать новое</th><th></th></tr></thead><tbody>';
-    for (var i = 0; i < planData.length; i++) {
-      var item = planData[i];
-      if (!item) continue;
-      var { text: shortDate, dayOfWeek } = formatDateAndDay(item);
-      var savedValue = userAnswers[item] || '';
-      var valueClass = '';
-      if (savedValue === '8-17') valueClass = 'current-value-8-17';
-      else if (savedValue === '17-21') valueClass = 'current-value-17-21';
-      else if (savedValue === '8-21') valueClass = 'current-value-8-21';
-      else if (savedValue === 'Вых.') valueClass = 'current-value-Вых';
-      else valueClass = 'current-value-empty';
-      var displayValue = savedValue || '—';
-      var dateClass = '';
-      if (dayOfWeek === 6) dateClass = 'saturday';
-      else if (dayOfWeek === 0) dateClass = 'sunday';
-      html += '<tr id="row_'+i+'">';
-      html += '<td class="plan-date ' + dateClass + '">' + escapeHtml(shortDate) + '</td>';
-      html += '<td><span class="' + valueClass + '">' + escapeHtml(displayValue) + '</span></td>';
-      html += '<td><select id="sel_'+i+'" class="plan-select">';
-      html += '<option value="">--</option>';
-      html += '<option value="8-17"' + (savedValue === '8-17' ? ' selected' : '') + '>8-17</option>';
-      html += '<option value="17-21"' + (savedValue === '17-21' ? ' selected' : '') + '>17-21</option>';
-      html += '<option value="8-21"' + (savedValue === '8-21' ? ' selected' : '') + '>8-21</option>';
-      html += '<option value="Вых."' + (savedValue === 'Вых.' ? ' selected' : '') + '>Вых.</option>';
-      html += '</select></td>';
-      html += '<td><button class="save-btn" onclick="saveAnswer(\''+escapeHtml(item)+'\','+i+')" id="btn_'+i+'">✓</button></td>';
-      html += '</tr>';
-    }
-    html += '</tbody></table>';
-    cont.innerHTML = html;
-  }
-  
-  window.saveAnswer = async function(item, idx) {
-    var sel = document.getElementById('sel_'+idx);
-    var val = sel.value;
-    if (!val) { alert('Выберите вариант'); return; }
-    var btn = document.getElementById('btn_'+idx);
-    if (btn) { btn.classList.add('saving'); btn.innerText = '⏳'; }
-    
-    const result = await apiPost('savePlanAnswer', {
-      userEmail: currentUser.email,
-      planItem: item,
-      selectedValue: val
-    });
-    
-    if (result && result.success) {
-      userAnswers[item] = val;
-      renderPlan();
-    } else {
-      alert('Ошибка сохранения');
-    }
-    if (btn) { btn.classList.remove('saving'); btn.innerText = '✓'; }
-  };
-
-  // ==================== ОТЧЁТЫ ====================
-  function handleReportFileSelect(event) {
-    var files = event.target.files;
-    if (!files || files.length === 0) return;
-    selectedReportFiles = [];
-    var totalFiles = files.length;
-    var processedCount = 0;
-    showBigNotification(`Обработка ${totalFiles} файлов...`, 3000);
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      if (!file.type.startsWith('image/')) { alert('Файл ' + file.name + ' не поддерживается. Только изображения.'); continue; }
-      (function(file, index) {
-        var reader = new FileReader();
-        reader.onload = function(ev) {
-          compressImage(ev.target.result, file.name, function(compressedData, compressedName) {
-            selectedReportFiles.push({ data: compressedData, name: compressedName, originalName: file.name });
-            processedCount++;
-            if (processedCount === totalFiles) showBigNotification(`✅ Готово: ${selectedReportFiles.length} файлов`, 3000);
-            else showBigNotification(`Обработано: ${processedCount}/${totalFiles}`, 2000);
-          });
-        };
-        reader.readAsDataURL(file);
-      })(file, i);
-    }
-  }
-  
-  window.uploadReport = async function() {
-    if (!selectedReportFiles.length) {
-      alert('Сначала выберите файлы');
-      return;
-    }
-    var pvz = document.getElementById('pvzSelect').value;
-    var reportType = document.getElementById('reportTypeSelect').value;
-    var btn = document.getElementById('uploadBtn');
-    var originalBtnText = btn.innerText;
-    var progressDiv = document.getElementById('uploadProgress');
-    var progressCountSpan = document.getElementById('progressCount');
-    var progressTotalSpan = document.getElementById('progressTotal');
-    var progressBarDiv = document.getElementById('progressBar');
-    
-    var additionalAnswers = null;
-    
-    function showCustomDialog(question) {
-      return new Promise(function(resolve) {
-        var dialog = document.getElementById('customDialog');
-        var questionEl = document.getElementById('dialogQuestion');
-        var inputEl = document.getElementById('dialogInput');
-        var okBtn = document.getElementById('dialogOk');
-        
-        questionEl.innerText = question;
-        inputEl.value = '';
-        dialog.style.display = 'flex';
-        inputEl.focus();
-        
-        function onOk() {
-          var val = parseInt(inputEl.value.trim(), 10);
-          if (isNaN(val)) {
-            alert('Пожалуйста, введите целое число');
-            return;
-          }
-          dialog.style.display = 'none';
-          okBtn.removeEventListener('click', onOk);
-          resolve(val);
-        }
-        okBtn.addEventListener('click', onOk);
-      });
-    }
-    
-    if (reportType === 'Чисто') {
-      var questions = [
-        'Укажите остаток скотча (шт.)',
-        'Остаток этикеток для принтера (кол-во рулонов)',
-        'Остаток мешков для мусора (кол-во рулонов)',
-        'Остаток влажных салфеток (пачек)'
-      ];
-      additionalAnswers = [];
-      for (var i = 0; i < questions.length; i++) {
-        var answer = await showCustomDialog(questions[i]);
-        additionalAnswers.push(answer);
-      }
-    }
-    
-    console.log('Дополнительные ответы перед отправкой:', additionalAnswers);
-    
-    if (progressDiv) {
-      progressDiv.style.display = 'block';
-      if (progressTotalSpan) progressTotalSpan.innerText = selectedReportFiles.length;
-      if (progressCountSpan) progressCountSpan.innerText = '0';
-      if (progressBarDiv) progressBarDiv.style.width = '0%';
-    }
-    btn.disabled = true;
-    btn.innerText = `Загрузка 0/${selectedReportFiles.length}...`;
-    
-    var uploadedUrls = [];
-    var totalFiles = selectedReportFiles.length;
-    var completedFiles = 0;
-    var failedFiles = 0;
-    var MAX_CONCURRENT = 3;
-    var currentIndex = 0;
-    var activeUploads = 0;
-    
-    function updateProgress() {
-      btn.innerText = `Загрузка ${completedFiles}/${totalFiles}...`;
-      if (progressCountSpan) progressCountSpan.innerText = completedFiles;
-      if (progressBarDiv) {
-        var percent = (completedFiles / totalFiles) * 100;
-        progressBarDiv.style.width = percent + '%';
-      }
-      if (completedFiles + failedFiles === totalFiles) {
-        finalizeReport();
-      }
-    }
-    
-    async function uploadNext() {
-      while (activeUploads < MAX_CONCURRENT && currentIndex < totalFiles) {
-        var file = selectedReportFiles[currentIndex];
-        var currentFileIndex = currentIndex;
-        currentIndex++;
-        activeUploads++;
-        
-        const fileUrl = await apiPost('uploadVideoToDrive', {
-          videoData: file.data,
-          fileName: file.name
-        });
-        
-        if (fileUrl) uploadedUrls.push(fileUrl);
-        else failedFiles++;
-        completedFiles++;
-        activeUploads--;
-        updateProgress();
-        uploadNext();
-      }
-    }
-    
-    function finalizeReport() {
-      if (uploadedUrls.length === 0) {
-        alert('Не удалось загрузить ни одного файла');
-        if (progressDiv) progressDiv.style.display = 'none';
-        btn.disabled = false;
-        btn.innerText = originalBtnText;
-        return;
-      }
-      if (failedFiles > 0) {
-        console.log(`⚠️ Не удалось загрузить ${failedFiles} файлов`);
-      }
-      btn.innerText = 'Отправка отчета...';
-      
-      apiPost('saveMultipleVideoReports', {
-        userEmail: currentUser.email,
-        pvz: pvz,
-        reportType: reportType,
-        videoUrlsArray: uploadedUrls,
-        selectedFilesMeta: selectedReportFiles,
-        additionalAnswers: additionalAnswers
-      }).then(() => {
-        showBigNotification(`✅ Отчет отправлен! (${uploadedUrls.length} файлов)`, 6000);
-        selectedReportFiles = [];
-        document.getElementById('reportFileInput').value = '';
-        document.getElementById('reportPhotoInput').value = '';
-        btn.disabled = false;
-        btn.innerText = originalBtnText;
-        if (progressDiv) progressDiv.style.display = 'none';
-      }).catch((error) => {
-        alert('Ошибка отправки отчета: ' + error);
-        btn.disabled = false;
-        btn.innerText = originalBtnText;
-        if (progressDiv) progressDiv.style.display = 'none';
-      });
-    }
-    
-    uploadNext();
-  };
-
-  // ==================== КАРТИНКА СВЕРХУ ====================
-  async function loadTopImage() {
-    var container = document.getElementById('topImageContainer');
-    if (!container) return;
-    
-    const url = await apiGet('getLatestGraphicImageUrl');
-    if (url) {
-      container.innerHTML = '<img src="'+url+'" alt="График" id="topImage">';
-      container.style.display = 'block';
-      var img = document.getElementById('topImage');
-      if (img) img.onclick = function() { openModalImage(url); };
-    } else {
-      container.style.display = 'none';
-    }
-  }
-
   // ==================== АВТОРИЗАЦИЯ ====================
-  async function logout() {
+  async function authenticateUser(email, password) {
+    const fingerprint = generateFingerprint();
+    const result = await api.post('authenticate', { email, password, fingerprint });
+    if (result.success) {
+      currentUser = result.user;
+      render();
+    } else {
+      document.getElementById('authError').innerText = result.error;
+    }
+  }
+  
+  async function tryAutoLogin() {
+    const fingerprint = generateFingerprint();
+    try {
+      const result = await api.post('authenticateByFingerprint', { fingerprint });
+      if (result.success) {
+        currentUser = result.user;
+        render();
+      } else {
+        render();
+      }
+    } catch(e) {
+      render();
+    }
+  }
+  
+  function logout() {
     if (confirm('Вы уверены, что хотите выйти?')) {
-      await apiPost('deleteUserSessions', { userEmail: currentUser.email });
       if (updateInterval) clearInterval(updateInterval);
       if (privateUpdateInterval) clearInterval(privateUpdateInterval);
       if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
@@ -1455,183 +374,471 @@ async function apiPost(action, data) {
     }
   }
   
-  async function login() {
-    var email = document.getElementById('email').value.trim();
-    var pwd = document.getElementById('password').value;
-    var errDiv = document.getElementById('authError');
-    if (!email || !pwd) { errDiv.innerText = 'Заполните поля'; return; }
-    var btn = document.querySelector('.auth-form button');
-    btn.disabled = true; btn.innerText = 'Вход...';
-    var fingerprint = generateFingerprint();
-    
-    const result = await apiPost('authenticate', { email: email, password: pwd, fingerprint: fingerprint });
-    if (result && result.success) {
-      currentUser = result.user;
-      render();
-    } else {
-      errDiv.innerText = result?.error || 'Ошибка входа';
-      btn.disabled = false;
-      btn.innerText = 'Войти';
+  // ==================== ОБЩИЙ ЧАТ ====================
+  async function loadCommonMessages(forceScroll) {
+    try {
+      const msgs = await api.get('getMessages');
+      const area = document.getElementById('commonMessagesArea');
+      if (!area) return;
+      
+      if (msgs.length > commonLastCount && commonLastCount > 0) {
+        const lastMsg = msgs[msgs.length - 1];
+        const isFromMe = lastMsg && (lastMsg.user === currentUser.name || lastMsg.user.indexOf(currentUser.email) !== -1);
+        if (!isFromMe) {
+          unreadCommonCount++;
+          updateTitleWithCount();
+          playNotificationSound();
+          const senderName = lastMsg.user ? lastMsg.user.split(' (')[0] : 'Пользователь';
+          showBrowserNotification('Новое сообщение', senderName + ': ' + (lastMsg.message || 'Изображение'));
+          startTitleBlink('Новое сообщение');
+          area.style.backgroundColor = '#e8eaf6';
+          setTimeout(() => area.style.backgroundColor = '', 500);
+        }
+      }
+      commonLastCount = msgs.length;
+      
+      if (!msgs.length) {
+        area.innerHTML = '<div style="text-align:center;color:#999;padding:20px">Нет сообщений</div>';
+        return;
+      }
+      
+      let html = '';
+      for (let i = 0; i < msgs.length; i++) {
+        const m = msgs[i];
+        const isOwn = (m.user === currentUser.name) || (m.user.indexOf(currentUser.email) !== -1);
+        const userName = m.user ? m.user.split(' (')[0] : 'Пользователь';
+        const msgClass = isOwn ? 'message message-own' : 'message message-other';
+        html += `<div class="${msgClass}" style="margin-bottom:15px;">`;
+        html += `<div class="message-user">${escapeHtml(userName)}<span class="message-time">${formatTime(m.timestamp)}</span></div>`;
+        if (m.quote) {
+          html += `<div style="background:#f0f2f5;padding:8px;margin:8px 0;border-radius:8px;font-size:12px;">`;
+          html += `<strong>📎 ${escapeHtml(m.quote.user)} писал(а):</strong><br>${escapeHtml(m.quote.text || '(без текста)')}`;
+          if (m.quote.imageUrl) html += `<br><img src="${m.quote.imageUrl}" style="max-width:100px;max-height:100px;border-radius:5px;">`;
+          html += `</div>`;
+        }
+        if (m.message) html += `<div class="message-text">${formatMessageWithLinks(escapeHtml(m.message))}</div>`;
+        if (m.imageUrl) html += `<img class="message-image" src="${m.imageUrl}" onclick="openImageModal(this.src)">`;
+        html += `</div>`;
+      }
+      area.innerHTML = html + '<div class="clearfix"></div>';
+      if (forceScroll) scrollToBottom(area, true);
+    } catch(e) {
+      console.error('loadCommonMessages error:', e);
     }
   }
   
-  async function tryAutoLogin() {
-    var fingerprint = generateFingerprint();
-    const result = await apiPost('authenticateByFingerprint', { fingerprint: fingerprint });
-    if (result && result.success) {
-      currentUser = result.user;
-      render();
-    } else {
-      render();
+  async function sendCommonMessage() {
+    const input = document.getElementById('commonMessageInput');
+    const msg = String(input.value.trim() || '');
+    if (!msg && !commonAttachmentData && !currentCommonQuote) {
+      alert('Напишите сообщение, добавьте изображение или ответьте на сообщение');
+      return;
+    }
+    
+    const btn = document.getElementById('commonSendBtn');
+    if (btn) btn.disabled = true;
+    
+    try {
+      await api.post('sendMessageWithQuote', {
+        message: msg,
+        userEmail: currentUser.email,
+        userName: currentUser.name,
+        imageData: commonAttachmentData,
+        quotedMessage: currentCommonQuote
+      });
+      input.value = '';
+      clearCommonAttachment();
+      cancelCommonQuote();
+      await loadCommonMessages(true);
+    } catch(e) {
+      alert('Ошибка отправки: ' + e.message);
+    } finally {
+      if (btn) btn.disabled = false;
     }
   }
-
+  
+  function handleCommonAttachmentSelect(event) {
+    const file = event.target.files[0];
+    if (!file || !file.type.startsWith('image/')) {
+      alert('Поддерживаются только изображения');
+      event.target.value = '';
+      return;
+    }
+    const previewDiv = document.getElementById('commonAttachmentPreview');
+    if (previewDiv) previewDiv.innerHTML = '<span>Обработка...</span>';
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      compressImage(ev.target.result, file.name, (compressedDataUrl, compressedName) => {
+        commonAttachmentData = compressedDataUrl;
+        if (previewDiv) {
+          previewDiv.innerHTML = `<img src="${compressedDataUrl}" class="preview-img"><span>${escapeHtml(compressedName)}</span><button onclick="clearCommonAttachment()">✕</button>`;
+        }
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+  
+  function clearCommonAttachment() {
+    commonAttachmentData = null;
+    const previewDiv = document.getElementById('commonAttachmentPreview');
+    if (previewDiv) previewDiv.innerHTML = '';
+    const fileInput = document.getElementById('commonFileInput');
+    if (fileInput) fileInput.value = '';
+  }
+  
+  function setCommonQuote(message) {
+    currentCommonQuote = message;
+    const container = document.getElementById('commonQuoteContainer');
+    if (container) {
+      container.innerHTML = `<div style="background:#e8eaf6;padding:10px;margin:8px;border-radius:12px;">
+        <div><strong>📎 Цитата от ${escapeHtml(message.user)}:</strong></div>
+        <div>${escapeHtml(message.text || '(без текста)')}</div>
+        <button onclick="cancelCommonQuote()">✕</button>
+      </div>`;
+      container.style.display = 'block';
+    }
+    const input = document.getElementById('commonMessageInput');
+    if (input) input.placeholder = `Ответ на сообщение от ${escapeHtml(message.user)}...`;
+  }
+  
+  function cancelCommonQuote() {
+    currentCommonQuote = null;
+    const container = document.getElementById('commonQuoteContainer');
+    if (container) container.style.display = 'none';
+    const input = document.getElementById('commonMessageInput');
+    if (input) input.placeholder = 'Сообщение...';
+  }
+  
+  // ==================== ЛИЧНЫЙ ЧАТ ====================
+  async function loadContactsWithUnread() {
+    try {
+      const contacts = await api.get('getUsersWithUnreadStatus', { userEmail: currentUser.email });
+      const panel = document.getElementById('contactsPanel');
+      if (!panel) return;
+      
+      for (let c of contacts) userNamesMap[c.email] = c.name;
+      
+      const newUnreadMap = {};
+      for (let c of contacts) {
+        newUnreadMap[c.email] = c.hasUnread;
+        if (c.hasUnread && !prevUnreadMap[c.email]) playNotificationSound();
+      }
+      prevUnreadMap = newUnreadMap;
+      
+      let html = '';
+      for (let c of contacts) {
+        const activeClass = (privateCurrentContact === c.email) ? 'contact-active' : '';
+        const unreadClass = c.hasUnread ? 'contact-unread' : '';
+        html += `<button class="contact-btn ${activeClass} ${unreadClass}" onclick="openPrivateChat('${c.email}')">${escapeHtml(c.name)}</button>`;
+      }
+      panel.innerHTML = html || '<div>Нет других пользователей</div>';
+      
+      if (contacts.length > 0 && !privateCurrentContact) {
+        const lastContact = await api.get('getLastPrivateContact', { userEmail: currentUser.email });
+        if (lastContact) openPrivateChat(lastContact);
+        else openPrivateChat(contacts[0].email);
+      }
+    } catch(e) {
+      console.error('loadContactsWithUnread error:', e);
+    }
+  }
+  
+  async function fetchLatestMessages(contactEmail, forceScroll) {
+    try {
+      const messages = await api.get('getConversation', { userEmail: currentUser.email, otherEmail: contactEmail });
+      cachedConversations[contactEmail] = messages.slice(-50);
+      displayPrivateMessages(messages, forceScroll);
+    } catch(e) {
+      console.error('fetchLatestMessages error:', e);
+    }
+  }
+  
+  function displayPrivateMessages(messages, forceScroll) {
+    const area = document.getElementById('privateMessagesArea');
+    if (!area) return;
+    
+    if (!messages.length) {
+      area.innerHTML = '<div style="text-align:center;color:#999;padding:20px">Нет сообщений</div>';
+      return;
+    }
+    
+    let html = '';
+    for (let i = 0; i < messages.length; i++) {
+      const m = messages[i];
+      const isOwn = (m.sender === currentUser.email);
+      const senderName = isOwn ? 'Вы' : (userNamesMap[m.sender] || m.sender);
+      const msgClass = isOwn ? 'private-message private-message-own' : 'private-message private-message-other';
+      html += `<div class="${msgClass}" style="margin-bottom:15px;">`;
+      html += `<div class="private-message-user">${escapeHtml(senderName)}<span class="private-message-time">${formatTime(m.timestamp)}</span></div>`;
+      if (m.quote) {
+        html += `<div style="background:#f0f2f5;padding:8px;margin:8px 0;border-radius:8px;font-size:12px;">`;
+        html += `<strong>📎 ${escapeHtml(m.quote.sender || m.quote.user)} писал(а):</strong><br>${escapeHtml(m.quote.text || '(без текста)')}`;
+        if (m.quote.imageUrl) html += `<br><img src="${m.quote.imageUrl}" style="max-width:100px;max-height:100px;border-radius:5px;">`;
+        html += `</div>`;
+      }
+      if (m.message) html += `<div class="private-message-text">${formatMessageWithLinks(escapeHtml(m.message))}</div>`;
+      if (m.imageUrl) html += `<img class="private-message-image" src="${m.imageUrl}" onclick="openImageModal(this.src)">`;
+      html += `</div>`;
+    }
+    area.innerHTML = html + '<div class="clearfix"></div>';
+    if (forceScroll) scrollToBottom(area, true);
+  }
+  
+  async function openPrivateChat(email) {
+    if (privateCurrentContact === email) return;
+    
+    const prevActive = document.querySelector('.contact-active');
+    if (prevActive) prevActive.classList.remove('contact-active');
+    
+    const newActive = document.querySelector(`.contact-btn[data-email="${email}"]`);
+    if (newActive) {
+      newActive.classList.add('contact-active');
+      newActive.classList.remove('contact-unread');
+    }
+    
+    privateCurrentContact = email;
+    
+    try {
+      await api.post('markMessagesAsRead', { userEmail: currentUser.email, otherEmail: email });
+    } catch(e) {}
+    
+    const area = document.getElementById('privateMessagesArea');
+    if (area) area.innerHTML = '<div style="text-align:center;padding:20px">Загрузка...</div>';
+    await fetchLatestMessages(email, true);
+    
+    if (privateUpdateInterval) clearInterval(privateUpdateInterval);
+    privateUpdateInterval = setInterval(async () => {
+      if (privateCurrentContact === email) {
+        try {
+          const messages = await api.get('getConversation', { userEmail: currentUser.email, otherEmail: email });
+          const oldLength = cachedConversations[email] ? cachedConversations[email].length : 0;
+          cachedConversations[email] = messages.slice(-50);
+          if (messages.length > oldLength && oldLength > 0) {
+            const lastMsg = messages[messages.length - 1];
+            if (lastMsg.sender !== currentUser.email) {
+              unreadPrivateCount++;
+              updateTitleWithCount();
+              playNotificationSound();
+              showBrowserNotification('Личное сообщение', (userNamesMap[lastMsg.sender] || lastMsg.sender) + ': ' + (lastMsg.message || 'Изображение'));
+              startTitleBlink('Личное сообщение');
+              loadContactsWithUnread();
+            }
+          }
+          const areaEl = document.getElementById('privateMessagesArea');
+          const wasAtBottom = areaEl && (areaEl.scrollHeight - areaEl.scrollTop) <= areaEl.clientHeight + 50;
+          displayPrivateMessages(messages, false);
+          if (wasAtBottom && areaEl) scrollToBottom(areaEl, true);
+        } catch(e) { console.error('refresh error:', e); }
+      }
+    }, 8000);
+  }
+  
+  async function sendPrivateMessage() {
+    if (!privateCurrentContact) {
+      alert('Сначала выберите собеседника');
+      return;
+    }
+    const input = document.getElementById('privateMessageInput');
+    const msg = String(input.value.trim() || '');
+    if (!msg && !privateAttachmentData && !currentPrivateQuote) {
+      alert('Напишите сообщение, добавьте изображение или ответьте на сообщение');
+      return;
+    }
+    
+    const btn = document.getElementById('privateSendBtn');
+    if (btn) btn.disabled = true;
+    
+    try {
+      await api.post('sendPrivateMessageWithQuote', {
+        senderEmail: currentUser.email,
+        recipientEmail: privateCurrentContact,
+        message: msg,
+        imageData: privateAttachmentData,
+        quotedMessage: currentPrivateQuote
+      });
+      input.value = '';
+      clearPrivateAttachment();
+      cancelPrivateQuote();
+      await fetchLatestMessages(privateCurrentContact, true);
+      loadContactsWithUnread();
+    } catch(e) {
+      alert('Ошибка отправки: ' + e.message);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  }
+  
+  function handlePrivateAttachmentSelect(event) {
+    const file = event.target.files[0];
+    if (!file || !file.type.startsWith('image/')) {
+      alert('Поддерживаются только изображения');
+      event.target.value = '';
+      return;
+    }
+    const previewDiv = document.getElementById('privateAttachmentPreview');
+    if (previewDiv) previewDiv.innerHTML = '<span>Обработка...</span>';
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      compressImage(ev.target.result, file.name, (compressedDataUrl, compressedName) => {
+        privateAttachmentData = compressedDataUrl;
+        if (previewDiv) {
+          previewDiv.innerHTML = `<img src="${compressedDataUrl}" class="preview-img"><span>${escapeHtml(compressedName)}</span><button onclick="clearPrivateAttachment()">✕</button>`;
+        }
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+  
+  function clearPrivateAttachment() {
+    privateAttachmentData = null;
+    const previewDiv = document.getElementById('privateAttachmentPreview');
+    if (previewDiv) previewDiv.innerHTML = '';
+    const fileInput = document.getElementById('privateFileInput');
+    if (fileInput) fileInput.value = '';
+  }
+  
+  function setPrivateQuote(message) {
+    currentPrivateQuote = message;
+    const container = document.getElementById('privateQuoteContainer');
+    if (container) {
+      container.innerHTML = `<div style="background:#f3e5f5;padding:10px;margin:8px;border-radius:12px;">
+        <div><strong>📎 Цитата от ${escapeHtml(message.sender)}:</strong></div>
+        <div>${escapeHtml(message.text || '(без текста)')}</div>
+        <button onclick="cancelPrivateQuote()">✕</button>
+      </div>`;
+      container.style.display = 'block';
+    }
+    const input = document.getElementById('privateMessageInput');
+    if (input) input.placeholder = `Ответ на сообщение от ${escapeHtml(message.sender)}...`;
+  }
+  
+  function cancelPrivateQuote() {
+    currentPrivateQuote = null;
+    const container = document.getElementById('privateQuoteContainer');
+    if (container) container.style.display = 'none';
+    const input = document.getElementById('privateMessageInput');
+    if (input) input.placeholder = 'Сообщение...';
+  }
+  
+  // ==================== ЗАГРУЗКА ДАННЫХ ====================
   function showLoadingOverlay() {
     if (loadingOverlay) return;
     loadingOverlay = document.createElement('div');
     loadingOverlay.className = 'loading-overlay';
-    loadingOverlay.innerHTML = '<div class="spinner"></div><div style="color:white; margin-top:20px; font-size:24px;">Загрузка чата...</div>';
+    loadingOverlay.innerHTML = '<div class="spinner"></div>';
     document.body.appendChild(loadingOverlay);
   }
   
   function hideLoadingOverlay() {
     if (loadingOverlay) {
-      loadingOverlay.style.opacity = '0';
-      setTimeout(function() { if (loadingOverlay && loadingOverlay.parentNode) loadingOverlay.parentNode.removeChild(loadingOverlay); loadingOverlay = null; }, 300);
-    }
-  }
-
-  window.addEventListener('focus', () => {
-    if (currentUser) {
-      unreadCommonCount = 0;
-      unreadPrivateCount = 0;
-      stopTitleBlink();
-      updateTitleWithCount();
-      loadContactsWithUnread();
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      if (currentUser) {
-        if (!('Notification' in window)) {
-          console.log('Браузер не поддерживает уведомления');
-        } else if (Notification.permission === 'default' && !notificationPermissionAsked) {
-          notificationPermissionAsked = true;
-          Notification.requestPermission();
-        }
-      }
-    }, 2000);
-  });
-
-  function render() {
-    var app = document.getElementById('app');
-    if (!currentUser) {
-      if (!autoLoginAttempted) { autoLoginAttempted = true; tryAutoLogin(); }
-      else {
-        app.innerHTML = '<div class="auth-overlay"><div class="auth-form"><h2>Корпоративный чат</h2><input type="email" id="email" placeholder="Email"><input type="password" id="password" placeholder="Пароль"><button onclick="login()">Войти</button><div id="authError" style="color:red; margin-top:8px"></div></div></div>';
-        document.getElementById('email').addEventListener('keypress', function(e) { if (e.key === 'Enter') login(); });
-        document.getElementById('password').addEventListener('keypress', function(e) { if (e.key === 'Enter') login(); });
-      }
-    } else {
-      showLoadingOverlay();
-      var html = '<div class="app">';
-      html += '<div class="top-image-container" id="topImageContainer"></div>';
-      html += '<div class="report-bar"><span>ОТЧЕТ:</span><select id="pvzSelect" class="report-select"><option>К8</option><option>П105</option><option>П10</option><option>К32</option></select><select id="reportTypeSelect" class="report-select"><option>Приёмка ПВЗ</option><option>Чисто</option><option>Закрытие ПВЗ</option></select><input type="file" id="reportFileInput" style="display:none" accept="image/*" multiple><input type="file" id="reportPhotoInput" style="display:none" accept="image/*" capture="environment" multiple><button class="report-btn" onclick="document.getElementById(\'reportFileInput\').click()">📁 Выбрать файлы</button><button class="report-btn" onclick="document.getElementById(\'reportPhotoInput\').click()">📸 Снять фото</button><button class="report-btn" id="uploadBtn" onclick="uploadReport()">✅ Отправить отчет</button></div>';
-      html += '<div id="uploadProgress" style="display:none; margin-top:10px; padding:10px; background:#f0f0f0; border-radius:10px;"><div style="font-size:24px;">Загрузка: <span id="progressCount">0</span>/<span id="progressTotal">0</span></div><div style="width:100%; height:20px; background:#ddd; border-radius:10px; overflow:hidden;"><div id="progressBar" style="width:0%; height:100%; background:#667eea; transition:width 0.3s;"></div></div></div>';
-      html += '<div class="common-chat-section" style="position: relative;">';
-      html += '<div class="common-header"><div><h2>💬 Общий чат</h2><div>' + escapeHtml(currentUser.name) + '</div></div><button class="send-btn" style="width:auto" onclick="logout()">Выйти</button></div>';
-      html += '<div class="messages-area" id="commonMessagesArea"><div>Загрузка...</div></div>';
-      html += '<div id="commonQuoteContainer" style="display: none;"><div style="display: flex; justify-content: space-between;"><div id="commonQuoteContent"></div><button onclick="cancelCommonQuote()" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div></div>';
-      html += '<button class="scroll-down-btn" id="commonScrollDownBtn" onclick="scrollToBottom(document.getElementById(\'commonMessagesArea\'), true)">↓</button>';
-      html += '<div class="input-area"><textarea class="msg-input" id="commonMessageInput" rows="2" placeholder="Сообщение..."></textarea>';
-      html += '<div class="input-buttons"><input type="file" id="commonFileInput" style="display:none" accept="image/*">';
-      html += '<button class="file-btn" onclick="document.getElementById(\'commonFileInput\').click()">📎 Фото</button>';
-      html += '<button class="send-btn" id="commonSendBtn" onclick="sendCommonMessageWithQuote()">Отправить</button>';
-      html += '<div id="commonAttachmentPreview" class="preview" style="display:none"></div></div></div></div>';
-      html += '<div class="private-chat-section"><div class="private-header"><h2>💬 Личный чат</h2></div>';
-      html += '<div class="private-chat-container"><div class="contacts-panel" id="contactsPanel"><div style="padding:10px;">Загрузка...</div></div>';
-      html += '<div class="chat-panel" style="position: relative;">';
-      html += '<div class="private-messages-area" id="privateMessagesArea"><div class="clearfix"></div></div>';
-      html += '<div id="privateQuoteContainer" style="display: none;"><div style="display: flex; justify-content: space-between;"><div id="privateQuoteContent"></div><button onclick="cancelPrivateQuote()" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div></div>';
-      html += '<button class="scroll-down-btn private-scroll-down-btn" id="privateScrollDownBtn" onclick="scrollToBottom(document.getElementById(\'privateMessagesArea\'), true)">↓</button>';
-      html += '<div class="input-area"><textarea class="msg-input" id="privateMessageInput" rows="2" placeholder="Сообщение..."></textarea>';
-      html += '<div class="input-buttons"><input type="file" id="privateFileInput" style="display:none" accept="image/*">';
-      html += '<button class="file-btn" onclick="document.getElementById(\'privateFileInput\').click()">📎 Фото</button>';
-      html += '<button class="send-btn" id="privateSendBtn" onclick="sendPrivateMessageWithQuote()">Отправить</button>';
-      html += '<div id="privateAttachmentPreview" class="preview" style="display:none"></div></div></div></div></div></div>';
-      html += '<div class="schedule-section"><h3>🟣 Расписание</h3><div id="raspContent">Загрузка...</div></div>';
-      html += '<div class="plan-section"><h3>📋 План-график</h3><div id="planContent">Загрузка...</div></div>';
-      html += '</div>';
-      app.innerHTML = html;
-      
-      Promise.all([
-        loadRasp(),
-        loadPlan(),
-        loadCommonMessages(true),
-        loadContactsWithUnread(),
-        loadTopImage()
-      ]).then(() => {
-        hideLoadingOverlay();
-      }).catch(err => { console.error(err); hideLoadingOverlay(); });
-      
-      if (updateInterval) clearInterval(updateInterval);
-      updateInterval = setInterval(function() { loadCommonMessages(false); }, 5000);
-      if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
-      contactsUpdateInterval = setInterval(function() { if (currentUser) loadContactsWithUnread(); }, 10000);
-      
-      const commonInput = document.getElementById('commonMessageInput');
-      if (commonInput) {
-        commonInput.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            sendCommonMessageWithQuote();
-          }
-        });
-      }
-      
-      const privateInput = document.getElementById('privateMessageInput');
-      if (privateInput) {
-        privateInput.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            sendPrivateMessageWithQuote();
-          }
-        });
-      }
-      
-      const commonFile = document.getElementById('commonFileInput');
-      if (commonFile) commonFile.addEventListener('change', handleCommonAttachmentSelect);
-      
-      const privateFile = document.getElementById('privateFileInput');
-      if (privateFile) privateFile.addEventListener('change', handlePrivateAttachmentSelect);
-      
-      const reportFile = document.getElementById('reportFileInput');
-      if (reportFile) reportFile.addEventListener('change', handleReportFileSelect);
-      
-      const reportPhoto = document.getElementById('reportPhotoInput');
-      if (reportPhoto) reportPhoto.addEventListener('change', handleReportFileSelect);
-      
-      const commonArea = document.getElementById('commonMessagesArea');
-      const commonScrollBtn = document.getElementById('commonScrollDownBtn');
-      if (commonArea && commonScrollBtn) {
-        setupScrollObserver(commonArea, commonScrollBtn, false);
-      }
-      
-      const setupPrivateScrollObserver = () => {
-        const privateArea = document.getElementById('privateMessagesArea');
-        const privateScrollBtn = document.getElementById('privateScrollDownBtn');
-        if (privateArea && privateScrollBtn) {
-          setupScrollObserver(privateArea, privateScrollBtn, true);
-        } else {
-          setTimeout(setupPrivateScrollObserver, 500);
-        }
-      };
-      setupPrivateScrollObserver();
+      loadingOverlay.remove();
+      loadingOverlay = null;
     }
   }
   
-  render();
+  // ==================== ОСНОВНАЯ ОТРИСОВКА ====================
+  function render() {
+    const app = document.getElementById('app');
+    if (!currentUser) {
+      app.innerHTML = `<div class="auth-overlay">
+        <div class="auth-form">
+          <h2>Корпоративный чат</h2>
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Пароль">
+          <button onclick="authenticateUser(document.getElementById('email').value, document.getElementById('password').value)">Войти</button>
+          <div id="authError" style="color:red; margin-top:8px"></div>
+        </div>
+      </div>`;
+      document.getElementById('email')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') authenticateUser(document.getElementById('email').value, document.getElementById('password').value); });
+      document.getElementById('password')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') authenticateUser(document.getElementById('email').value, document.getElementById('password').value); });
+    } else {
+      showLoadingOverlay();
+      const html = `
+        <div class="app">
+          <div class="common-chat-section">
+            <div class="common-header">
+              <div><h2>Общий чат</h2><div>${escapeHtml(currentUser.name)}</div></div>
+              <button class="send-btn" onclick="logout()">Выйти</button>
+            </div>
+            <div class="messages-area" id="commonMessagesArea">Загрузка...</div>
+            <div id="commonQuoteContainer" style="display:none"></div>
+            <div class="input-area">
+              <textarea class="msg-input" id="commonMessageInput" rows="2" placeholder="Сообщение..."></textarea>
+              <div class="input-buttons">
+                <input type="file" id="commonFileInput" style="display:none" accept="image/*">
+                <button class="file-btn" onclick="document.getElementById('commonFileInput').click()">Фото</button>
+                <button class="send-btn" id="commonSendBtn" onclick="sendCommonMessage()">Отправить</button>
+              </div>
+              <div id="commonAttachmentPreview" class="preview" style="display:none"></div>
+            </div>
+            <button class="scroll-down-btn" id="commonScrollDownBtn" onclick="scrollToBottom(document.getElementById('commonMessagesArea'), true)">↓</button>
+          </div>
+          <div class="private-chat-section">
+            <div class="private-header"><h2>Личный чат</h2></div>
+            <div class="private-chat-container">
+              <div class="contacts-panel" id="contactsPanel">Загрузка...</div>
+              <div class="chat-panel">
+                <div class="private-messages-area" id="privateMessagesArea"></div>
+                <div id="privateQuoteContainer" style="display:none"></div>
+                <div class="input-area">
+                  <textarea class="msg-input" id="privateMessageInput" rows="2" placeholder="Сообщение..."></textarea>
+                  <div class="input-buttons">
+                    <input type="file" id="privateFileInput" style="display:none" accept="image/*">
+                    <button class="file-btn" onclick="document.getElementById('privateFileInput').click()">Фото</button>
+                    <button class="send-btn" id="privateSendBtn" onclick="sendPrivateMessage()">Отправить</button>
+                  </div>
+                  <div id="privateAttachmentPreview" class="preview" style="display:none"></div>
+                </div>
+                <button class="scroll-down-btn" id="privateScrollDownBtn" onclick="scrollToBottom(document.getElementById('privateMessagesArea'), true)">↓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      app.innerHTML = html;
+      
+      Promise.all([
+        loadCommonMessages(true),
+        loadContactsWithUnread()
+      ]).then(() => {
+        hideLoadingOverlay();
+        const commonArea = document.getElementById('commonMessagesArea');
+        const commonBtn = document.getElementById('commonScrollDownBtn');
+        if (commonArea && commonBtn) setupScrollObserver(commonArea, commonBtn);
+        const privateArea = document.getElementById('privateMessagesArea');
+        const privateBtn = document.getElementById('privateScrollDownBtn');
+        if (privateArea && privateBtn) setupScrollObserver(privateArea, privateBtn);
+      });
+      
+      if (updateInterval) clearInterval(updateInterval);
+      updateInterval = setInterval(() => loadCommonMessages(false), 5000);
+      if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
+      contactsUpdateInterval = setInterval(() => { if (currentUser) loadContactsWithUnread(); }, 10000);
+      
+      document.getElementById('commonFileInput').addEventListener('change', handleCommonAttachmentSelect);
+      document.getElementById('privateFileInput').addEventListener('change', handlePrivateAttachmentSelect);
+      document.getElementById('commonMessageInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); sendCommonMessage(); }
+      });
+      document.getElementById('privateMessageInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); sendPrivateMessage(); }
+      });
+      
+      requestBrowserNotificationPermission();
+    }
+  }
+  
+  window.addEventListener('focus', () => {
+    unreadCommonCount = 0;
+    unreadPrivateCount = 0;
+    stopTitleBlink();
+    updateTitleWithCount();
+    if (currentUser) loadContactsWithUnread();
+  });
+  
+  let autoLoginAttempted = false;
+  if (!autoLoginAttempted) { autoLoginAttempted = true; tryAutoLogin(); }
+  else render();
 </script>
 </body>
 </html>
