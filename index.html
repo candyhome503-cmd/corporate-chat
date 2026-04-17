@@ -51,8 +51,10 @@
     .preview-img { max-width: 60px; max-height: 60px; border-radius: 10px; }
     .auth-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; justify-content: center; align-items: center; z-index: 1000; }
     .auth-form { background: white; padding: 30px; border-radius: 20px; width: 320px; text-align: center; }
+    .auth-form h2 { margin-bottom: 20px; color: #333; }
     .auth-form input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; }
     .auth-form button { background: #667eea; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; font-size: 16px; cursor: pointer; }
+    .auth-form button:disabled { opacity: 0.6; cursor: not-allowed; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; }
     .modal.active { display: flex; }
     .modal-img { max-width: 95vw; max-height: 95vh; object-fit: contain; border-radius: 12px; }
@@ -111,7 +113,6 @@
       .contact-btn { display: inline-block; width: auto; margin-right: 8px; white-space: nowrap; }
       .private-chat-container { flex-direction: column; }
       .message, .private-message { max-width: 90%; }
-      .message-text, .private-message-text { font-size: 16px; }
     }
   </style>
 </head>
@@ -123,7 +124,7 @@
   // ⚠️ ЗАМЕНИТЕ ЭТУ ПЕРЕМЕННУЮ НА ВАШ URL ИЗ GOOGLE APPS SCRIPT
   const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbzxN77N3TjP-3T6iJl1BxXudTbau2q_YRgfpYzODgjiudAntaDfbX1R1VjTFzmnfTqn/exec';
   
-  // ==================== ПЕРЕМЕННЫЕ ====================
+  // ==================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ====================
   let currentUser = null;
   let updateInterval = null;
   let privateUpdateInterval = null;
@@ -145,55 +146,8 @@
   let blinkInterval = null;
   let lastNotificationTime = 0;
   const NOTIFICATION_DEBOUNCE = 3000;
-  
-  // Функция для генерации отпечатка устройства (упрощённая версия)
   let cachedFingerprint = localStorage.getItem('device_fingerprint');
-  function generateFingerprint() {
-    if (cachedFingerprint) return cachedFingerprint;
-    function simpleHash(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-      }
-      return Math.abs(hash).toString(16);
-    }
-    const fingerprintData = [
-      navigator.userAgent,
-      screen.width + 'x' + screen.height,
-      screen.colorDepth,
-      navigator.language
-    ];
-    const hash = simpleHash(fingerprintData.join('|'));
-    cachedFingerprint = hash;
-    localStorage.setItem('device_fingerprint', hash);
-    return hash;
-  }
-  
-  // ==================== API КЛИЕНТ ====================
-  const api = {
-    async get(action, params = {}) {
-      const url = new URL(API_BASE_URL);
-      url.searchParams.append('action', action);
-      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-      const response = await fetch(url.toString());
-      const result = await response.json();
-      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
-      return result.data;
-    },
-    
-    async post(action, data = {}) {
-      const response = await fetch(`${API_BASE_URL}?action=${action}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, ...data })
-      });
-      const result = await response.json();
-      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
-      return result.data;
-    }
-  };
+  let autoLoginAttempted = false;
   
   // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
   function escapeHtml(s) { if (!s) return ''; return s.replace(/[&<>]/g, function(m) { if (m==='&') return '&amp;'; if (m==='<') return '&lt;'; if (m==='>') return '&gt;'; return m; }); }
@@ -337,44 +291,54 @@
   }
   window.openModalImage = openModalImage;
   
-  // ==================== АВТОРИЗАЦИЯ ====================
-  async function authenticateUser(email, password) {
-    const fingerprint = generateFingerprint();
-    const result = await api.post('authenticate', { email, password, fingerprint });
-    if (result.success) {
-      currentUser = result.user;
-      render();
-    } else {
-      document.getElementById('authError').innerText = result.error;
-    }
-  }
-  
-  async function tryAutoLogin() {
-    const fingerprint = generateFingerprint();
-    try {
-      const result = await api.post('authenticateByFingerprint', { fingerprint });
-      if (result.success) {
-        currentUser = result.user;
-        render();
-      } else {
-        render();
+  function generateFingerprint() {
+    if (cachedFingerprint) return cachedFingerprint;
+    function simpleHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
       }
-    } catch(e) {
-      render();
+      return Math.abs(hash).toString(16);
     }
+    const fingerprintData = [
+      navigator.userAgent,
+      screen.width + 'x' + screen.height,
+      screen.colorDepth,
+      navigator.language
+    ];
+    const hash = simpleHash(fingerprintData.join('|'));
+    cachedFingerprint = hash;
+    localStorage.setItem('device_fingerprint', hash);
+    return hash;
   }
   
-  function logout() {
-    if (confirm('Вы уверены, что хотите выйти?')) {
-      if (updateInterval) clearInterval(updateInterval);
-      if (privateUpdateInterval) clearInterval(privateUpdateInterval);
-      if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
-      currentUser = null;
-      render();
+  // ==================== API КЛИЕНТ ====================
+  const api = {
+    async get(action, params = {}) {
+      const url = new URL(API_BASE_URL);
+      url.searchParams.append('action', action);
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+      const response = await fetch(url.toString());
+      const result = await response.json();
+      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
+      return result.data;
+    },
+    
+    async post(action, data = {}) {
+      const response = await fetch(`${API_BASE_URL}?action=${action}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, ...data })
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error(result.error || 'Неизвестная ошибка');
+      return result.data;
     }
-  }
+  };
   
-  // ==================== ОБЩИЙ ЧАТ ====================
+  // ==================== ФУНКЦИИ ОБЩЕГО ЧАТА ====================
   async function loadCommonMessages(forceScroll) {
     try {
       const msgs = await api.get('getMessages');
@@ -509,7 +473,7 @@
     if (input) input.placeholder = 'Сообщение...';
   }
   
-  // ==================== ЛИЧНЫЙ ЧАТ ====================
+  // ==================== ФУНКЦИИ ЛИЧНОГО ЧАТА ====================
   async function loadContactsWithUnread() {
     try {
       const contacts = await api.get('getUsersWithUnreadStatus', { userEmail: currentUser.email });
@@ -529,14 +493,18 @@
       for (let c of contacts) {
         const activeClass = (privateCurrentContact === c.email) ? 'contact-active' : '';
         const unreadClass = c.hasUnread ? 'contact-unread' : '';
-        html += `<button class="contact-btn ${activeClass} ${unreadClass}" onclick="openPrivateChat('${c.email}')">${escapeHtml(c.name)}</button>`;
+        html += `<button class="contact-btn ${activeClass} ${unreadClass}" data-email="${c.email}" onclick="openPrivateChat('${c.email}')">${escapeHtml(c.name)}</button>`;
       }
       panel.innerHTML = html || '<div>Нет других пользователей</div>';
       
       if (contacts.length > 0 && !privateCurrentContact) {
-        const lastContact = await api.get('getLastPrivateContact', { userEmail: currentUser.email });
-        if (lastContact) openPrivateChat(lastContact);
-        else openPrivateChat(contacts[0].email);
+        try {
+          const lastContact = await api.get('getLastPrivateContact', { userEmail: currentUser.email });
+          if (lastContact) openPrivateChat(lastContact);
+          else openPrivateChat(contacts[0].email);
+        } catch(e) {
+          openPrivateChat(contacts[0].email);
+        }
       }
     } catch(e) {
       console.error('loadContactsWithUnread error:', e);
@@ -720,7 +688,63 @@
     if (input) input.placeholder = 'Сообщение...';
   }
   
-  // ==================== ЗАГРУЗКА ДАННЫХ ====================
+  // ==================== АВТОРИЗАЦИЯ ====================
+  async function authenticateUser(email, password) {
+    const btn = document.querySelector('.auth-form button');
+    const errDiv = document.getElementById('authError');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = 'Вход...';
+    }
+    
+    try {
+      const fingerprint = generateFingerprint();
+      const result = await api.post('authenticate', { email, password, fingerprint });
+      if (result.success) {
+        currentUser = result.user;
+        renderMainApp();
+      } else if (errDiv) {
+        errDiv.innerText = result.error || 'Ошибка входа';
+      }
+    } catch(e) {
+      if (errDiv) errDiv.innerText = 'Ошибка соединения: ' + e.message;
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = 'Войти';
+      }
+    }
+  }
+  
+  async function tryAutoLogin() {
+    try {
+      const fingerprint = generateFingerprint();
+      const result = await api.post('authenticateByFingerprint', { fingerprint });
+      if (result.success) {
+        currentUser = result.user;
+        renderMainApp();
+      } else {
+        renderAuthForm();
+      }
+    } catch(e) {
+      console.error('Auto login error:', e);
+      renderAuthForm();
+    }
+  }
+  
+  function logout() {
+    if (confirm('Вы уверены, что хотите выйти?')) {
+      if (updateInterval) clearInterval(updateInterval);
+      if (privateUpdateInterval) clearInterval(privateUpdateInterval);
+      if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
+      currentUser = null;
+      privateCurrentContact = null;
+      cachedConversations = {};
+      renderAuthForm();
+    }
+  }
+  
+  // ==================== ОТРИСОВКА ИНТЕРФЕЙСА ====================
   function showLoadingOverlay() {
     if (loadingOverlay) return;
     loadingOverlay = document.createElement('div');
@@ -736,109 +760,161 @@
     }
   }
   
-  // ==================== ОСНОВНАЯ ОТРИСОВКА ====================
-  function render() {
+  function renderAuthForm() {
     const app = document.getElementById('app');
-    if (!currentUser) {
-      app.innerHTML = `<div class="auth-overlay">
+    app.innerHTML = `
+      <div class="auth-overlay">
         <div class="auth-form">
           <h2>Корпоративный чат</h2>
-          <input type="email" id="email" placeholder="Email">
-          <input type="password" id="password" placeholder="Пароль">
-          <button onclick="authenticateUser(document.getElementById('email').value, document.getElementById('password').value)">Войти</button>
+          <input type="email" id="email" placeholder="Email" autocomplete="email">
+          <input type="password" id="password" placeholder="Пароль" autocomplete="current-password">
+          <button id="loginBtn">Войти</button>
           <div id="authError" style="color:red; margin-top:8px"></div>
         </div>
-      </div>`;
-      document.getElementById('email')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') authenticateUser(document.getElementById('email').value, document.getElementById('password').value); });
-      document.getElementById('password')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') authenticateUser(document.getElementById('email').value, document.getElementById('password').value); });
-    } else {
-      showLoadingOverlay();
-      const html = `
-        <div class="app">
-          <div class="common-chat-section">
-            <div class="common-header">
-              <div><h2>Общий чат</h2><div>${escapeHtml(currentUser.name)}</div></div>
-              <button class="send-btn" onclick="logout()">Выйти</button>
-            </div>
-            <div class="messages-area" id="commonMessagesArea">Загрузка...</div>
-            <div id="commonQuoteContainer" style="display:none"></div>
-            <div class="input-area">
-              <textarea class="msg-input" id="commonMessageInput" rows="2" placeholder="Сообщение..."></textarea>
-              <div class="input-buttons">
-                <input type="file" id="commonFileInput" style="display:none" accept="image/*">
-                <button class="file-btn" onclick="document.getElementById('commonFileInput').click()">Фото</button>
-                <button class="send-btn" id="commonSendBtn" onclick="sendCommonMessage()">Отправить</button>
-              </div>
-              <div id="commonAttachmentPreview" class="preview" style="display:none"></div>
-            </div>
-            <button class="scroll-down-btn" id="commonScrollDownBtn" onclick="scrollToBottom(document.getElementById('commonMessagesArea'), true)">↓</button>
+      </div>
+    `;
+    
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    const doLogin = () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      if (email && password) {
+        authenticateUser(email, password);
+      } else {
+        const errDiv = document.getElementById('authError');
+        if (errDiv) errDiv.innerText = 'Заполните все поля';
+      }
+    };
+    
+    loginBtn.onclick = doLogin;
+    emailInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') doLogin(); });
+    passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') doLogin(); });
+  }
+  
+  async function renderMainApp() {
+    const app = document.getElementById('app');
+    showLoadingOverlay();
+    
+    const html = `
+      <div class="app">
+        <div class="common-chat-section">
+          <div class="common-header">
+            <div><h2>Общий чат</h2><div>${escapeHtml(currentUser.name)}</div></div>
+            <button class="send-btn" onclick="logout()">Выйти</button>
           </div>
-          <div class="private-chat-section">
-            <div class="private-header"><h2>Личный чат</h2></div>
-            <div class="private-chat-container">
-              <div class="contacts-panel" id="contactsPanel">Загрузка...</div>
-              <div class="chat-panel">
-                <div class="private-messages-area" id="privateMessagesArea"></div>
-                <div id="privateQuoteContainer" style="display:none"></div>
-                <div class="input-area">
-                  <textarea class="msg-input" id="privateMessageInput" rows="2" placeholder="Сообщение..."></textarea>
-                  <div class="input-buttons">
-                    <input type="file" id="privateFileInput" style="display:none" accept="image/*">
-                    <button class="file-btn" onclick="document.getElementById('privateFileInput').click()">Фото</button>
-                    <button class="send-btn" id="privateSendBtn" onclick="sendPrivateMessage()">Отправить</button>
-                  </div>
-                  <div id="privateAttachmentPreview" class="preview" style="display:none"></div>
+          <div class="messages-area" id="commonMessagesArea">Загрузка...</div>
+          <div id="commonQuoteContainer" style="display:none"></div>
+          <div class="input-area">
+            <textarea class="msg-input" id="commonMessageInput" rows="2" placeholder="Сообщение... (Ctrl+Enter для отправки)"></textarea>
+            <div class="input-buttons">
+              <input type="file" id="commonFileInput" style="display:none" accept="image/*">
+              <button class="file-btn" onclick="document.getElementById('commonFileInput').click()">Фото</button>
+              <button class="send-btn" id="commonSendBtn" onclick="sendCommonMessage()">Отправить</button>
+            </div>
+            <div id="commonAttachmentPreview" class="preview" style="display:none"></div>
+          </div>
+          <button class="scroll-down-btn" id="commonScrollDownBtn" onclick="scrollToBottom(document.getElementById('commonMessagesArea'), true)">↓</button>
+        </div>
+        <div class="private-chat-section">
+          <div class="private-header"><h2>Личный чат</h2></div>
+          <div class="private-chat-container">
+            <div class="contacts-panel" id="contactsPanel">Загрузка...</div>
+            <div class="chat-panel">
+              <div class="private-messages-area" id="privateMessagesArea"></div>
+              <div id="privateQuoteContainer" style="display:none"></div>
+              <div class="input-area">
+                <textarea class="msg-input" id="privateMessageInput" rows="2" placeholder="Сообщение... (Ctrl+Enter для отправки)"></textarea>
+                <div class="input-buttons">
+                  <input type="file" id="privateFileInput" style="display:none" accept="image/*">
+                  <button class="file-btn" onclick="document.getElementById('privateFileInput').click()">Фото</button>
+                  <button class="send-btn" id="privateSendBtn" onclick="sendPrivateMessage()">Отправить</button>
                 </div>
-                <button class="scroll-down-btn" id="privateScrollDownBtn" onclick="scrollToBottom(document.getElementById('privateMessagesArea'), true)">↓</button>
+                <div id="privateAttachmentPreview" class="preview" style="display:none"></div>
               </div>
+              <button class="scroll-down-btn" id="privateScrollDownBtn" onclick="scrollToBottom(document.getElementById('privateMessagesArea'), true)">↓</button>
             </div>
           </div>
         </div>
-      `;
-      app.innerHTML = html;
-      
-      Promise.all([
+      </div>
+    `;
+    
+    app.innerHTML = html;
+    
+    try {
+      await Promise.all([
         loadCommonMessages(true),
         loadContactsWithUnread()
-      ]).then(() => {
-        hideLoadingOverlay();
-        const commonArea = document.getElementById('commonMessagesArea');
-        const commonBtn = document.getElementById('commonScrollDownBtn');
-        if (commonArea && commonBtn) setupScrollObserver(commonArea, commonBtn);
-        const privateArea = document.getElementById('privateMessagesArea');
-        const privateBtn = document.getElementById('privateScrollDownBtn');
-        if (privateArea && privateBtn) setupScrollObserver(privateArea, privateBtn);
-      });
-      
-      if (updateInterval) clearInterval(updateInterval);
-      updateInterval = setInterval(() => loadCommonMessages(false), 5000);
-      if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
-      contactsUpdateInterval = setInterval(() => { if (currentUser) loadContactsWithUnread(); }, 10000);
-      
-      document.getElementById('commonFileInput').addEventListener('change', handleCommonAttachmentSelect);
-      document.getElementById('privateFileInput').addEventListener('change', handlePrivateAttachmentSelect);
-      document.getElementById('commonMessageInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); sendCommonMessage(); }
-      });
-      document.getElementById('privateMessageInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); sendPrivateMessage(); }
-      });
-      
-      requestBrowserNotificationPermission();
+      ]);
+    } catch(e) {
+      console.error('Initial load error:', e);
     }
+    
+    hideLoadingOverlay();
+    
+    const commonArea = document.getElementById('commonMessagesArea');
+    const commonBtn = document.getElementById('commonScrollDownBtn');
+    if (commonArea && commonBtn) setupScrollObserver(commonArea, commonBtn);
+    
+    const privateArea = document.getElementById('privateMessagesArea');
+    const privateBtn = document.getElementById('privateScrollDownBtn');
+    if (privateArea && privateBtn) setupScrollObserver(privateArea, privateBtn);
+    
+    if (updateInterval) clearInterval(updateInterval);
+    updateInterval = setInterval(() => loadCommonMessages(false), 5000);
+    
+    if (contactsUpdateInterval) clearInterval(contactsUpdateInterval);
+    contactsUpdateInterval = setInterval(() => { if (currentUser) loadContactsWithUnread(); }, 10000);
+    
+    document.getElementById('commonFileInput').addEventListener('change', handleCommonAttachmentSelect);
+    document.getElementById('privateFileInput').addEventListener('change', handlePrivateAttachmentSelect);
+    
+    document.getElementById('commonMessageInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        sendCommonMessage();
+      }
+    });
+    
+    document.getElementById('privateMessageInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        sendPrivateMessage();
+      }
+    });
+    
+    requestBrowserNotificationPermission();
   }
   
+  // ==================== ЗАПУСК ПРИЛОЖЕНИЯ ====================
   window.addEventListener('focus', () => {
-    unreadCommonCount = 0;
-    unreadPrivateCount = 0;
-    stopTitleBlink();
-    updateTitleWithCount();
-    if (currentUser) loadContactsWithUnread();
+    if (currentUser) {
+      unreadCommonCount = 0;
+      unreadPrivateCount = 0;
+      stopTitleBlink();
+      updateTitleWithCount();
+      loadContactsWithUnread();
+    }
   });
   
-  let autoLoginAttempted = false;
-  if (!autoLoginAttempted) { autoLoginAttempted = true; tryAutoLogin(); }
-  else render();
+  // Экспортируем функции в глобальную область для вызова из HTML
+  window.authenticateUser = authenticateUser;
+  window.logout = logout;
+  window.sendCommonMessage = sendCommonMessage;
+  window.sendPrivateMessage = sendPrivateMessage;
+  window.openPrivateChat = openPrivateChat;
+  window.scrollToBottom = scrollToBottom;
+  window.clearCommonAttachment = clearCommonAttachment;
+  window.clearPrivateAttachment = clearPrivateAttachment;
+  window.cancelCommonQuote = cancelCommonQuote;
+  window.cancelPrivateQuote = cancelPrivateQuote;
+  window.setCommonQuote = setCommonQuote;
+  window.setPrivateQuote = setPrivateQuote;
+  
+  // Запуск
+  tryAutoLogin();
 </script>
 </body>
 </html>
